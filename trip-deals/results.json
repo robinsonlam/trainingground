@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-30T09:52:38.364Z",
+  "generatedAt": "2026-10-30T10:11:54.069Z",
   "query": {
     "destinations": [
       "Belfast (BFS/BHD)",
@@ -18,37 +18,37 @@
     "virginaustralia": {
       "ok": true,
       "count": 0,
-      "ms": 973
-    },
-    "pointhacks": {
-      "ok": true,
-      "count": 2,
-      "ms": 1670
+      "ms": 907
     },
     "emirates": {
       "ok": true,
       "count": 18,
-      "ms": 1979
+      "ms": 1778
+    },
+    "pointhacks": {
+      "ok": true,
+      "count": 2,
+      "ms": 2174
     },
     "ozbargain-deals": {
       "ok": true,
       "count": 48,
-      "ms": 6723
+      "ms": 6734
     },
     "probe-only": {
       "ok": true,
       "count": 0,
-      "ms": 9417
+      "ms": 9829
     },
     "ozbargain-competitions": {
       "ok": true,
       "count": 200,
-      "ms": 11451
+      "ms": 11494
     },
     "aussiecomps.com": {
       "ok": true,
       "count": 10,
-      "ms": 16197,
+      "ms": 16207,
       "notes": [
         "listings per search {\"flights\":29,\"trip\":29,\"holiday\":14,\"travel\":29,\"voucher\":29,\"kong\":0,\"ireland\":0,\"belfast\":0,\"london\":0,\"europe\":1}",
         "77 keyword matches, 10 relevant"
@@ -57,7 +57,7 @@
     "competitions.com.au": {
       "ok": true,
       "count": 33,
-      "ms": 34337,
+      "ms": 34903,
       "notes": [
         "89 travel listings, 33 detail pages opened"
       ]
@@ -65,7 +65,7 @@
     "cathaypacific": {
       "ok": true,
       "count": 13,
-      "ms": 202212
+      "ms": 199265
     }
   },
   "probes": [
@@ -159,8 +159,15 @@
       "termsUrl": "https://assets-oce.mkt.dynamics.com/c5b227c4-d39e-47b2-bdaa-765ef3d0eed1/digitalassets/standaloneforms/c38138e1-31a8-f111-b8de-6045bdc3f55c",
       "url": "https://www.ozbargain.com.au/node/979672",
       "source": "ozbargain-competitions",
-      "fetchedAt": "2026-10-30T09:52:49.815Z",
+      "fetchedAt": "2026-10-30T10:12:05.563Z",
       "notes": null,
+      "entryKind": "draw",
+      "purchaseRequired": null,
+      "effort": "low",
+      "winners": 1,
+      "travelValueAud": 2500,
+      "ozbEntrants": 229,
+      "priority": "A",
       "alsoListedAt": [
         "https://www.aussiecomps.com/index.php?id=28355"
       ]
@@ -182,8 +189,15 @@
       "termsUrl": "https://lifecykel.com/pages/win-the-ultimate-reset",
       "url": "https://www.ozbargain.com.au/node/978373",
       "source": "ozbargain-competitions",
-      "fetchedAt": "2026-10-30T09:52:49.815Z",
-      "notes": null
+      "fetchedAt": "2026-10-30T10:12:05.563Z",
+      "notes": null,
+      "entryKind": "draw",
+      "purchaseRequired": null,
+      "effort": "low",
+      "winners": 1,
+      "travelValueAud": 500,
+      "ozbEntrants": 83,
+      "priority": "B"
     },
     {
       "type": "competition",
@@ -202,8 +216,15 @@
       "termsUrl": "https://augustethelabel.com/pages/the-anywhere-escape",
       "url": "https://www.ozbargain.com.au/node/979160",
       "source": "ozbargain-competitions",
-      "fetchedAt": "2026-10-30T09:52:49.815Z",
+      "fetchedAt": "2026-10-30T10:12:05.563Z",
       "notes": null,
+      "entryKind": "draw",
+      "purchaseRequired": null,
+      "effort": "low",
+      "winners": 1,
+      "travelValueAud": 3000,
+      "ozbEntrants": 233,
+      "priority": "A",
       "alsoListedAt": [
         "https://www.aussiecomps.com/index.php?id=28314"
       ]
@@ -225,8 +246,15 @@
       "termsUrl": "https://email.mixandmatchtravel.com.au/p/7GQX-FTM/win-a-500-mix-match-flight-voucher",
       "url": "https://www.ozbargain.com.au/node/979906",
       "source": "ozbargain-competitions",
-      "fetchedAt": "2026-10-30T09:52:49.815Z",
+      "fetchedAt": "2026-10-30T10:12:05.563Z",
       "notes": null,
+      "entryKind": "draw",
+      "purchaseRequired": null,
+      "effort": "medium",
+      "winners": 1,
+      "travelValueAud": 500,
+      "ozbEntrants": 41,
+      "priority": "B",
       "alsoListedAt": [
         "https://www.aussiecomps.com/index.php?id=28335"
       ]
@@ -248,7 +276,7 @@
       "termsUrl": "https://www.shopback.com.au/velocityfrequentflyer",
       "url": "https://www.ozbargain.com.au/node/979616",
       "source": "ozbargain-travel",
-      "fetchedAt": "2026-10-30T09:52:45.088Z",
+      "fetchedAt": "2026-10-30T10:12:00.804Z",
       "notes": null
     },
     {
@@ -268,8 +296,15 @@
       "termsUrl": "https://www.blackpepper.com.au/pages/win-a-5000-holiday?tw_so&amp;adid=52557491623933",
       "url": "https://www.ozbargain.com.au/node/979072",
       "source": "ozbargain-competitions",
-      "fetchedAt": "2026-10-30T09:52:49.815Z",
+      "fetchedAt": "2026-10-30T10:12:05.563Z",
       "notes": null,
+      "entryKind": "skill",
+      "purchaseRequired": false,
+      "effort": "high",
+      "winners": 1,
+      "travelValueAud": 5000,
+      "ozbEntrants": 103,
+      "priority": "A",
       "alsoListedAt": [
         "https://www.aussiecomps.com/index.php?id=28263"
       ]
@@ -291,8 +326,15 @@
       "termsUrl": "https://www.aussiecomps.com/ps/19320",
       "url": "https://www.aussiecomps.com/index.php?id=28374",
       "source": "aussiecomps.com",
-      "fetchedAt": "2026-10-30T09:52:54.562Z",
-      "notes": null
+      "fetchedAt": "2026-10-30T10:12:10.277Z",
+      "notes": null,
+      "entryKind": null,
+      "purchaseRequired": null,
+      "effort": "low",
+      "winners": 1,
+      "travelValueAud": null,
+      "ozbEntrants": null,
+      "priority": "D"
     },
     {
       "type": "competition",
@@ -311,8 +353,15 @@
       "termsUrl": "https://www.aussiecomps.com/ps/19304",
       "url": "https://www.aussiecomps.com/index.php?id=28358",
       "source": "aussiecomps.com",
-      "fetchedAt": "2026-10-30T09:52:54.562Z",
-      "notes": null
+      "fetchedAt": "2026-10-30T10:12:10.277Z",
+      "notes": null,
+      "entryKind": "skill",
+      "purchaseRequired": null,
+      "effort": "high",
+      "winners": 1,
+      "travelValueAud": 1000,
+      "ozbEntrants": null,
+      "priority": "B"
     },
     {
       "type": "competition",
@@ -331,8 +380,15 @@
       "termsUrl": "https://www.1cover.com.au/discount-code-promotions/asia-giveaway-26/",
       "url": "https://www.competitions.com.au/win-15k-asia-travel-voucher/75946/",
       "source": "competitions.com.au",
-      "fetchedAt": "2026-10-30T09:53:12.702Z",
-      "notes": null
+      "fetchedAt": "2026-10-30T10:12:28.973Z",
+      "notes": null,
+      "entryKind": "draw",
+      "purchaseRequired": true,
+      "effort": "low",
+      "winners": 1,
+      "travelValueAud": 15000,
+      "ozbEntrants": null,
+      "priority": "C"
     },
     {
       "type": "sale",
@@ -351,7 +407,7 @@
       "termsUrl": "https://iwantthatflight.com.au/deal/flights-to-europe-from-889-return-on-china-southern?ozb=70",
       "url": "https://www.ozbargain.com.au/node/979316",
       "source": "ozbargain-uk",
-      "fetchedAt": "2026-10-30T09:52:45.088Z",
+      "fetchedAt": "2026-10-30T10:12:00.804Z",
       "notes": null,
       "alsoListedAt": [
         "https://www.ozbargain.com.au/node/979316"
@@ -374,8 +430,15 @@
       "termsUrl": "https://www.ecosa.com.au/subscribe-matildas",
       "url": "https://www.ozbargain.com.au/node/979536",
       "source": "ozbargain-competitions",
-      "fetchedAt": "2026-10-30T09:52:49.815Z",
-      "notes": null
+      "fetchedAt": "2026-10-30T10:12:05.563Z",
+      "notes": null,
+      "entryKind": "draw",
+      "purchaseRequired": null,
+      "effort": "medium",
+      "winners": 1,
+      "travelValueAud": 5000,
+      "ozbEntrants": 92,
+      "priority": "A"
     },
     {
       "type": "competition",
@@ -394,8 +457,15 @@
       "termsUrl": "https://musclerepublic.com/pages/win-a-getaway",
       "url": "https://www.ozbargain.com.au/node/975561",
       "source": "ozbargain-competitions",
-      "fetchedAt": "2026-10-30T09:52:49.815Z",
+      "fetchedAt": "2026-10-30T10:12:05.563Z",
       "notes": null,
+      "entryKind": "draw",
+      "purchaseRequired": null,
+      "effort": "low",
+      "winners": 2,
+      "travelValueAud": 20000,
+      "ozbEntrants": 177,
+      "priority": "A",
       "alsoListedAt": [
         "https://www.aussiecomps.com/index.php?id=28101",
         "https://www.competitions.com.au/win-24k-holiday-adventure-giveaway/75302/"
@@ -418,8 +488,15 @@
       "termsUrl": "https://www.stfrock.com.au/pages/spring-2026-giveaway",
       "url": "https://www.ozbargain.com.au/node/978230",
       "source": "ozbargain-competitions",
-      "fetchedAt": "2026-10-30T09:52:49.815Z",
-      "notes": null
+      "fetchedAt": "2026-10-30T10:12:05.563Z",
+      "notes": null,
+      "entryKind": "draw",
+      "purchaseRequired": null,
+      "effort": "medium",
+      "winners": 1,
+      "travelValueAud": 1000,
+      "ozbEntrants": 40,
+      "priority": "B"
     },
     {
       "type": "competition",
@@ -438,8 +515,15 @@
       "termsUrl": "https://www.sheridan.com.au/competition/gift-of-rest",
       "url": "https://www.ozbargain.com.au/node/980442",
       "source": "ozbargain-competitions",
-      "fetchedAt": "2026-10-30T09:52:49.815Z",
+      "fetchedAt": "2026-10-30T10:12:05.563Z",
       "notes": null,
+      "entryKind": "skill",
+      "purchaseRequired": null,
+      "effort": "high",
+      "winners": 3,
+      "travelValueAud": 5000,
+      "ozbEntrants": 69,
+      "priority": "A",
       "alsoListedAt": [
         "https://www.aussiecomps.com/index.php?id=28399"
       ]
@@ -461,8 +545,15 @@
       "termsUrl": "https://www.laserco.com.au/win-a-trip-for-two-to-london/?goal=0_ab8a0ecbfa-fc39abb0c3-460161288&mc_cid=fc39abb0c3&mc_eid=c9d39995d4",
       "url": "https://www.competitions.com.au/win-trip-two-london-ebenezer-merchandise-packs/76098/",
       "source": "competitions.com.au",
-      "fetchedAt": "2026-10-30T09:53:12.702Z",
-      "notes": null
+      "fetchedAt": "2026-10-30T10:12:28.973Z",
+      "notes": null,
+      "entryKind": "skill",
+      "purchaseRequired": true,
+      "effort": "high",
+      "winners": 1,
+      "travelValueAud": null,
+      "ozbEntrants": null,
+      "priority": "C"
     },
     {
       "type": "sale",
@@ -485,7 +576,7 @@
       "termsUrl": null,
       "url": "https://flights.cathaypacific.com/en_AU/offers/student-flights.html",
       "source": "cathaypacific",
-      "fetchedAt": "2026-10-30T09:56:00.577Z",
+      "fetchedAt": "2026-10-30T10:15:13.336Z",
       "notes": null,
       "alsoListedAt": [
         "https://flights.cathaypacific.com/en_HK/offers/student-fare.html"
@@ -508,8 +599,15 @@
       "termsUrl": "https://heydoodle.com.au/pages/adventure-giveaway",
       "url": "https://www.ozbargain.com.au/node/978445",
       "source": "ozbargain-competitions",
-      "fetchedAt": "2026-10-30T09:52:49.815Z",
+      "fetchedAt": "2026-10-30T10:12:05.563Z",
       "notes": null,
+      "entryKind": "draw",
+      "purchaseRequired": null,
+      "effort": "low",
+      "winners": 1,
+      "travelValueAud": 1000,
+      "ozbEntrants": 144,
+      "priority": "B",
       "alsoListedAt": [
         "https://www.aussiecomps.com/index.php?id=28258"
       ]
@@ -531,8 +629,15 @@
       "termsUrl": "https://switchnutrition.com.au/",
       "url": "https://www.competitions.com.au/win-15k-travel-voucher-or-10k-cash/75845/",
       "source": "competitions.com.au",
-      "fetchedAt": "2026-10-30T09:53:12.702Z",
-      "notes": null
+      "fetchedAt": "2026-10-30T10:12:28.973Z",
+      "notes": null,
+      "entryKind": "draw",
+      "purchaseRequired": true,
+      "effort": "low",
+      "winners": 1,
+      "travelValueAud": 15000,
+      "ozbEntrants": null,
+      "priority": "C"
     },
     {
       "type": "competition",
@@ -551,8 +656,15 @@
       "termsUrl": "https://saltycrush.com/pages/win",
       "url": "https://www.ozbargain.com.au/node/979850",
       "source": "ozbargain-competitions",
-      "fetchedAt": "2026-10-30T09:52:49.815Z",
+      "fetchedAt": "2026-10-30T10:12:05.563Z",
       "notes": null,
+      "entryKind": "draw",
+      "purchaseRequired": null,
+      "effort": "low",
+      "winners": 1,
+      "travelValueAud": 4000,
+      "ozbEntrants": 176,
+      "priority": "A",
       "alsoListedAt": [
         "https://www.aussiecomps.com/index.php?id=28370"
       ]
@@ -574,8 +686,15 @@
       "termsUrl": "https://cadburymonopoly.com/",
       "url": "https://www.competitions.com.au/win-car-or-travel-prize-london-or-cash-instant-prizes/72927/",
       "source": "competitions.com.au",
-      "fetchedAt": "2026-10-30T09:53:12.702Z",
-      "notes": null
+      "fetchedAt": "2026-10-30T10:12:28.973Z",
+      "notes": null,
+      "entryKind": "instant",
+      "purchaseRequired": true,
+      "effort": "low",
+      "winners": 1,
+      "travelValueAud": null,
+      "ozbEntrants": null,
+      "priority": "C"
     },
     {
       "type": "competition",
@@ -594,8 +713,15 @@
       "termsUrl": "https://www.bravectoholidays.com.au/",
       "url": "https://www.competitions.com.au/win-10k-travel-vouchers-50-visa-gift-cards/75783/",
       "source": "competitions.com.au",
-      "fetchedAt": "2026-10-30T09:53:12.702Z",
-      "notes": null
+      "fetchedAt": "2026-10-30T10:12:28.973Z",
+      "notes": null,
+      "entryKind": null,
+      "purchaseRequired": true,
+      "effort": "low",
+      "winners": 5,
+      "travelValueAud": 10000,
+      "ozbEntrants": null,
+      "priority": "C"
     },
     {
       "type": "sale",
@@ -614,7 +740,7 @@
       "termsUrl": null,
       "url": "https://www.emirates.com/au/english/special-offers/student-special-fares/",
       "source": "emirates-au",
-      "fetchedAt": "2026-10-30T09:52:40.344Z",
+      "fetchedAt": "2026-10-30T10:11:55.849Z",
       "notes": null,
       "alsoListedAt": [
         "https://www.emirates.com/hk/english/special-offers/student-special-fares/"
@@ -637,7 +763,7 @@
       "termsUrl": null,
       "url": "https://www.emirates.com/au/english/special-offers/earn-more-miles-with-visa/",
       "source": "emirates-au",
-      "fetchedAt": "2026-10-30T09:52:40.344Z",
+      "fetchedAt": "2026-10-30T10:11:55.849Z",
       "notes": null,
       "alsoListedAt": [
         "https://www.emirates.com/hk/english/special-offers/earn-more-miles-with-visa/"
@@ -660,7 +786,7 @@
       "termsUrl": null,
       "url": "https://flights.cathaypacific.com/en_HK/offers/family-premium-pass.html",
       "source": "cathaypacific",
-      "fetchedAt": "2026-10-30T09:56:00.577Z",
+      "fetchedAt": "2026-10-30T10:15:13.336Z",
       "notes": null
     },
     {
@@ -680,7 +806,7 @@
       "termsUrl": null,
       "url": "https://flights.cathaypacific.com/en_AU/offers/oneworld.html",
       "source": "cathaypacific",
-      "fetchedAt": "2026-10-30T09:56:00.577Z",
+      "fetchedAt": "2026-10-30T10:15:13.336Z",
       "notes": null
     },
     {
@@ -700,7 +826,7 @@
       "termsUrl": null,
       "url": "https://flights.cathaypacific.com/en_AU/offers/price-promise.html",
       "source": "cathaypacific",
-      "fetchedAt": "2026-10-30T09:56:00.577Z",
+      "fetchedAt": "2026-10-30T10:15:13.336Z",
       "notes": null
     },
     {
@@ -720,7 +846,7 @@
       "termsUrl": null,
       "url": "https://flights.cathaypacific.com/en_AU/offers/stopover-in-hong-kong-lh-flights.html",
       "source": "cathaypacific",
-      "fetchedAt": "2026-10-30T09:56:00.577Z",
+      "fetchedAt": "2026-10-30T10:15:13.336Z",
       "notes": null
     },
     {
@@ -740,7 +866,7 @@
       "termsUrl": "https://www.beatthatflight.com.au/deals/turkish-airlines-thai-airways-business-class-europe-melbourne-perth-sydney-from-4880-return-oct-2026-sep-2027",
       "url": "https://www.ozbargain.com.au/node/979338",
       "source": "ozbargain-uk",
-      "fetchedAt": "2026-10-30T09:52:45.088Z",
+      "fetchedAt": "2026-10-30T10:12:00.804Z",
       "notes": null,
       "alsoListedAt": [
         "https://www.ozbargain.com.au/node/979338"
@@ -763,7 +889,7 @@
       "termsUrl": null,
       "url": "https://www.emirates.com/au/english/special-offers/",
       "source": "emirates-au",
-      "fetchedAt": "2026-10-30T09:52:40.344Z",
+      "fetchedAt": "2026-10-30T10:11:55.849Z",
       "notes": null,
       "alsoListedAt": [
         "https://www.emirates.com/hk/english/special-offers/"
@@ -786,7 +912,7 @@
       "termsUrl": null,
       "url": "https://www.emirates.com/au/english/skywards/partners/skywards-miles-mall/",
       "source": "emirates-au",
-      "fetchedAt": "2026-10-30T09:52:40.344Z",
+      "fetchedAt": "2026-10-30T10:11:55.849Z",
       "notes": null,
       "alsoListedAt": [
         "https://www.emirates.com/hk/english/skywards/partners/skywards-miles-mall/"
@@ -809,7 +935,7 @@
       "termsUrl": null,
       "url": "https://www.emirates.com/au/english/special-offers/",
       "source": "emirates-au",
-      "fetchedAt": "2026-10-30T09:52:40.344Z",
+      "fetchedAt": "2026-10-30T10:11:55.849Z",
       "notes": null,
       "alsoListedAt": [
         "https://www.emirates.com/hk/english/special-offers/"
@@ -832,7 +958,7 @@
       "termsUrl": null,
       "url": "https://www.emirates.com/au/english/special-offers/bonus-skywards-miles-offers/",
       "source": "emirates-au",
-      "fetchedAt": "2026-10-30T09:52:40.344Z",
+      "fetchedAt": "2026-10-30T10:11:55.849Z",
       "notes": null,
       "alsoListedAt": [
         "https://www.emirates.com/hk/english/special-offers/bonus-skywards-miles-offers/"
@@ -855,7 +981,7 @@
       "termsUrl": null,
       "url": "https://www.emirates.com/au/english/special-offers/enjoy-25-percent-bonus-skywards-miles/",
       "source": "emirates-au",
-      "fetchedAt": "2026-10-30T09:52:40.344Z",
+      "fetchedAt": "2026-10-30T10:11:55.849Z",
       "notes": null,
       "alsoListedAt": [
         "https://www.emirates.com/hk/english/special-offers/enjoy-25-percent-bonus-skywards-miles/"
@@ -878,7 +1004,7 @@
       "termsUrl": null,
       "url": "https://www.emirates.com/au/english/skywards/partners/easyjet/",
       "source": "emirates-au",
-      "fetchedAt": "2026-10-30T09:52:40.344Z",
+      "fetchedAt": "2026-10-30T10:11:55.849Z",
       "notes": null,
       "alsoListedAt": [
         "https://www.emirates.com/hk/english/skywards/partners/easyjet/"
@@ -901,7 +1027,7 @@
       "termsUrl": null,
       "url": "https://www.emirates.com/au/english/skywards/cash-plus-miles/",
       "source": "emirates-au",
-      "fetchedAt": "2026-10-30T09:52:40.344Z",
+      "fetchedAt": "2026-10-30T10:11:55.849Z",
       "notes": null,
       "alsoListedAt": [
         "https://www.emirates.com/hk/english/skywards/cash-plus-miles/"
@@ -924,7 +1050,7 @@
       "termsUrl": null,
       "url": "https://www.pointhacks.com.au/news/asmallworld-250000-cathay-asia-miles-promotion/",
       "source": "pointhacks",
-      "fetchedAt": "2026-10-30T09:52:40.035Z",
+      "fetchedAt": "2026-10-30T10:11:56.245Z",
       "notes": null
     },
     {
@@ -944,7 +1070,7 @@
       "termsUrl": null,
       "url": "https://www.pointhacks.com.au/news/qatar-airways-tightens-rules-on-using-avios-my-list/",
       "source": "pointhacks",
-      "fetchedAt": "2026-10-30T09:52:40.035Z",
+      "fetchedAt": "2026-10-30T10:11:56.245Z",
       "notes": null
     }
   ],
@@ -966,7 +1092,7 @@
       "termsUrl": "https://www.google.com/travel/flights/search?tcfs=ChIKCC9tLzA2eTU3GgZTeWRuZXkS&amp;tfs=CBwQAhojEgoyMDI2LTAyLTA1agcIARIDQk5FcgwIAhIIL20vMDJjZnQaIxIKMjAyNi0wMi0yNGoMCAISCC9tLzAyY2Z0cgcIARIDQk5FQAFIAXABggELCP___________wGYAQGyAQsSCS9tLzAxOTVwZA&amp;tfu=EgYIACACKAEiAA",
       "url": "https://www.ozbargain.com.au/node/910637",
       "source": "ozbargain-ireland",
-      "fetchedAt": "2026-10-30T09:52:45.088Z",
+      "fetchedAt": "2026-10-30T10:12:00.804Z",
       "notes": null,
       "alsoListedAt": [
         "https://www.ozbargain.com.au/node/978242"
@@ -990,7 +1116,7 @@
       "termsUrl": "https://iwantthatflight.com.au/deal/flights-to-europe-from-796-return-on-etihad-in-october-november-26?ozb=70",
       "url": "https://www.ozbargain.com.au/node/954429",
       "source": "ozbargain-ireland",
-      "fetchedAt": "2026-10-30T09:52:45.088Z",
+      "fetchedAt": "2026-10-30T10:12:00.804Z",
       "notes": null,
       "excludedBecause": "expired"
     },
@@ -1011,7 +1137,7 @@
       "termsUrl": "https://www.beatthatflight.com.au/deals/etihad-business-class-europe-melbourne-sydney-from-3532-apr-jun-2026",
       "url": "https://www.ozbargain.com.au/node/953271",
       "source": "ozbargain-ireland",
-      "fetchedAt": "2026-10-30T09:52:45.088Z",
+      "fetchedAt": "2026-10-30T10:12:00.804Z",
       "notes": null,
       "excludedBecause": "expired"
     },
@@ -1036,7 +1162,7 @@
       "termsUrl": "https://iwantthatflight.com.au/deal/flights-to-switzerland-italy-and-ireland-from-796-return-on-etihad-in-october-november-26?ozb=70",
       "url": "https://www.ozbargain.com.au/node/958537",
       "source": "ozbargain-ireland",
-      "fetchedAt": "2026-10-30T09:52:45.088Z",
+      "fetchedAt": "2026-10-30T10:12:00.804Z",
       "notes": null,
       "excludedBecause": "expired"
     },
@@ -1057,7 +1183,7 @@
       "termsUrl": "https://www.shopback.com.au/cathay-pacific",
       "url": "https://www.ozbargain.com.au/node/968534",
       "source": "ozbargain-hong-kong",
-      "fetchedAt": "2026-10-30T09:52:45.088Z",
+      "fetchedAt": "2026-10-30T10:12:00.804Z",
       "notes": null,
       "excludedBecause": "expired"
     },
@@ -1078,7 +1204,7 @@
       "termsUrl": "https://www.cathaypacific.com/cx/en_HK/offers/80yearstogether.html",
       "url": "https://www.ozbargain.com.au/node/968636",
       "source": "ozbargain-hong-kong",
-      "fetchedAt": "2026-10-30T09:52:45.088Z",
+      "fetchedAt": "2026-10-30T10:12:00.804Z",
       "notes": null,
       "excludedBecause": "expired"
     },
@@ -1099,7 +1225,7 @@
       "termsUrl": "https://www.beatthatflight.com.au/deals/airasia-one-way-per-syd-mel-bali-from-143-singapore-183-kl-194-phuket-202-bangkok-221-tokyo-266-more",
       "url": "https://www.ozbargain.com.au/node/963880",
       "source": "ozbargain-hong-kong",
-      "fetchedAt": "2026-10-30T09:52:45.088Z",
+      "fetchedAt": "2026-10-30T10:12:00.804Z",
       "notes": null,
       "excludedBecause": "expired"
     },
@@ -1120,7 +1246,7 @@
       "termsUrl": "https://www.qantas.com/en-au/book/flight-deals?deal-type=international-red-tail-sale#deals",
       "url": "https://www.ozbargain.com.au/node/969368",
       "source": "ozbargain-hong-kong",
-      "fetchedAt": "2026-10-30T09:52:45.088Z",
+      "fetchedAt": "2026-10-30T10:12:00.804Z",
       "notes": null,
       "excludedBecause": "expired"
     },
@@ -1141,7 +1267,7 @@
       "termsUrl": "https://www.flightfinderau.com/new-york-chicago-dallas-1439-return-flights-cathay-pacific/",
       "url": "https://www.ozbargain.com.au/node/969715",
       "source": "ozbargain-hong-kong",
-      "fetchedAt": "2026-10-30T09:52:45.088Z",
+      "fetchedAt": "2026-10-30T10:12:00.804Z",
       "notes": null,
       "excludedBecause": "expired"
     },
@@ -1166,7 +1292,7 @@
       "termsUrl": "https://www.beatthatflight.com.au/deals/etihad-europe-open-jaw-price-hack-from-1248-melbourne-sydney-oct-2026-mar-2027",
       "url": "https://www.ozbargain.com.au/node/964918",
       "source": "ozbargain-ireland",
-      "fetchedAt": "2026-10-30T09:52:45.088Z",
+      "fetchedAt": "2026-10-30T10:12:00.804Z",
       "notes": null,
       "excludedBecause": "expired"
     },
@@ -1191,7 +1317,7 @@
       "termsUrl": "https://flights.cathaypacific.com/en_AU/offers/stopover-in-hong-kong-lh.html",
       "url": "https://www.ozbargain.com.au/node/969550",
       "source": "ozbargain-hong-kong",
-      "fetchedAt": "2026-10-30T09:52:45.088Z",
+      "fetchedAt": "2026-10-30T10:12:00.804Z",
       "notes": null,
       "excludedBecause": "expired"
     },
@@ -1212,7 +1338,7 @@
       "termsUrl": "https://iwantthatflight.com.au/deal/london-flights-on-5-star-singapore-airlines-from-1455-return-1?ozb=70",
       "url": "https://www.ozbargain.com.au/node/974045",
       "source": "ozbargain-uk",
-      "fetchedAt": "2026-10-30T09:52:45.088Z",
+      "fetchedAt": "2026-10-30T10:12:00.804Z",
       "notes": null,
       "excludedBecause": "expired"
     },
@@ -1233,7 +1359,7 @@
       "termsUrl": "https://iwantthatflight.com.au/deal/london-flights-from-just-1082-return?ozb=70",
       "url": "https://www.ozbargain.com.au/node/974327",
       "source": "ozbargain-uk",
-      "fetchedAt": "2026-10-30T09:52:45.088Z",
+      "fetchedAt": "2026-10-30T10:12:00.804Z",
       "notes": null,
       "excludedBecause": "expired"
     },
@@ -1254,7 +1380,7 @@
       "termsUrl": "https://www.skyscanner.com.au/transport/flights/bne/dub/270209/270308/",
       "url": "https://www.ozbargain.com.au/node/974207",
       "source": "ozbargain-ireland",
-      "fetchedAt": "2026-10-30T09:52:45.088Z",
+      "fetchedAt": "2026-10-30T10:12:00.804Z",
       "notes": null,
       "excludedBecause": "expired"
     },
@@ -1275,7 +1401,7 @@
       "termsUrl": "https://www.cathaypacific.com/cx/en_AU.html",
       "url": "https://www.ozbargain.com.au/node/971621",
       "source": "ozbargain-hong-kong",
-      "fetchedAt": "2026-10-30T09:52:45.088Z",
+      "fetchedAt": "2026-10-30T10:12:00.804Z",
       "notes": null,
       "excludedBecause": "expired"
     },
@@ -1296,7 +1422,7 @@
       "termsUrl": "https://flights.flightfinderau.com/flight.ashx?cl=economy&amp;cur=AUD&amp;dc=HKG&amp;dd=2026-10-25&amp;dealselect=SQ----588&amp;oc=PER&amp;pa=1&amp;po=all&amp;price=Infinity&amp;rd=2026-11-23",
       "url": "https://www.ozbargain.com.au/node/973322",
       "source": "ozbargain-hong-kong",
-      "fetchedAt": "2026-10-30T09:52:45.088Z",
+      "fetchedAt": "2026-10-30T10:12:00.804Z",
       "notes": null,
       "alsoListedAt": [
         "https://www.ozbargain.com.au/node/968166",
@@ -1321,7 +1447,7 @@
       "termsUrl": "https://www.virginaustralia.com/au-en/holidays-40000-bonus-points-october-2026",
       "url": "https://www.ozbargain.com.au/node/978718",
       "source": "ozbargain-travel",
-      "fetchedAt": "2026-10-30T09:52:45.088Z",
+      "fetchedAt": "2026-10-30T10:12:00.804Z",
       "notes": null,
       "excludedBecause": "expired"
     },
@@ -1342,7 +1468,7 @@
       "termsUrl": "https://www.velocityfrequentflyer.com/partners-offers/airlines/virgin-australia-airlines/pick-your-bonus-oct-2026",
       "url": "https://www.ozbargain.com.au/node/978606",
       "source": "ozbargain-travel",
-      "fetchedAt": "2026-10-30T09:52:45.088Z",
+      "fetchedAt": "2026-10-30T10:12:00.804Z",
       "notes": null,
       "excludedBecause": "expired"
     },
@@ -1367,7 +1493,7 @@
       "termsUrl": null,
       "url": "https://flights.cathaypacific.com/en_AU/offers/stopover-in-hong-kong-lh.html",
       "source": "cathaypacific",
-      "fetchedAt": "2026-10-30T09:56:00.577Z",
+      "fetchedAt": "2026-10-30T10:15:13.336Z",
       "notes": null,
       "excludedBecause": "travel window does not cover Sep-Oct 2027"
     },
@@ -1392,7 +1518,7 @@
       "termsUrl": null,
       "url": "https://flights.cathaypacific.com/en_AU/offers/premium-economy-plus-offer.html",
       "source": "cathaypacific",
-      "fetchedAt": "2026-10-30T09:56:00.577Z",
+      "fetchedAt": "2026-10-30T10:15:13.336Z",
       "notes": null,
       "excludedBecause": "travel window does not cover Sep-Oct 2027"
     },
@@ -1417,7 +1543,7 @@
       "termsUrl": null,
       "url": "https://flights.cathaypacific.com/en_HK/offers/domestic-helper-flight-offer.html",
       "source": "cathaypacific",
-      "fetchedAt": "2026-10-30T09:56:00.577Z",
+      "fetchedAt": "2026-10-30T10:15:13.336Z",
       "notes": null,
       "excludedBecause": "not open to (general) AU/HK residents"
     },
@@ -1442,7 +1568,7 @@
       "termsUrl": "https://skyspy.deals/?date=2027-01-21&amp;from=MEL&amp;to=CDG",
       "url": "https://www.ozbargain.com.au/node/980712",
       "source": "ozbargain-uk",
-      "fetchedAt": "2026-10-30T09:52:45.088Z",
+      "fetchedAt": "2026-10-30T10:12:00.804Z",
       "notes": null,
       "alsoListedAt": [
         "https://www.ozbargain.com.au/node/975026",
@@ -1473,7 +1599,7 @@
       "termsUrl": null,
       "url": "https://flights.cathaypacific.com/en_AU/offers/east-hotel.html",
       "source": "cathaypacific",
-      "fetchedAt": "2026-10-30T09:56:00.577Z",
+      "fetchedAt": "2026-10-30T10:15:13.336Z",
       "notes": null,
       "excludedBecause": "travel window does not cover Sep-Oct 2027"
     },
@@ -1498,7 +1624,7 @@
       "termsUrl": null,
       "url": "https://flights.cathaypacific.com/en_AU/offers/adelaide-seasonal-flights.html",
       "source": "cathaypacific",
-      "fetchedAt": "2026-10-30T09:56:00.577Z",
+      "fetchedAt": "2026-10-30T10:15:13.336Z",
       "notes": null,
       "excludedBecause": "travel window does not cover Sep-Oct 2027"
     },
@@ -1523,7 +1649,7 @@
       "termsUrl": null,
       "url": "https://flights.cathaypacific.com/en_HK/offers/weekly-discovery.html",
       "source": "cathaypacific",
-      "fetchedAt": "2026-10-30T09:56:00.577Z",
+      "fetchedAt": "2026-10-30T10:15:13.336Z",
       "notes": null,
       "excludedBecause": "travel window does not cover Sep-Oct 2027"
     },
@@ -1548,7 +1674,7 @@
       "termsUrl": null,
       "url": "https://flights.cathaypacific.com/en_AU/offers/skytrax-2026-offer.html",
       "source": "cathaypacific",
-      "fetchedAt": "2026-10-30T09:56:00.577Z",
+      "fetchedAt": "2026-10-30T10:15:13.336Z",
       "notes": "Sale excludes Hong Kong",
       "excludedBecause": "travel window does not cover Sep-Oct 2027"
     },
@@ -1573,7 +1699,7 @@
       "termsUrl": "https://www.beatthatflight.com.au/deals/etihad-europe-open-jaw-melbourne-from-1346-sydney-from-1350-oct-2026-jun-2027",
       "url": "https://www.ozbargain.com.au/node/975223",
       "source": "ozbargain-uk",
-      "fetchedAt": "2026-10-30T09:52:45.088Z",
+      "fetchedAt": "2026-10-30T10:12:00.804Z",
       "notes": null,
       "alsoListedAt": [
         "https://www.ozbargain.com.au/node/975223"
@@ -1599,7 +1725,7 @@
       "termsUrl": "https://flights.flightfinderau.com/flight.ashx?cl=economy&amp;cur=AUD&amp;dc=HKG&amp;dd=2026-10-25&amp;dealselect=SQ----588&amp;oc=PER&amp;pa=1&amp;po=all&amp;price=Infinity&amp;rd=2026-11-23",
       "url": "https://www.ozbargain.com.au/node/973322",
       "source": "ozbargain-hong-kong",
-      "fetchedAt": "2026-10-30T09:52:45.088Z",
+      "fetchedAt": "2026-10-30T10:12:00.804Z",
       "notes": null,
       "alsoListedAt": [
         "https://www.ozbargain.com.au/node/968166",
@@ -1624,7 +1750,7 @@
       "termsUrl": "https://www.skyscanner.com.au/transport/flights/bne/dub/270209/270308/",
       "url": "https://www.ozbargain.com.au/node/974207",
       "source": "ozbargain-ireland",
-      "fetchedAt": "2026-10-30T09:52:45.088Z",
+      "fetchedAt": "2026-10-30T10:12:00.804Z",
       "notes": null,
       "excludedBecause": "expired"
     },
@@ -1645,7 +1771,7 @@
       "termsUrl": "https://iwantthatflight.com.au/deal/london-flights-from-just-1082-return?ozb=70",
       "url": "https://www.ozbargain.com.au/node/974327",
       "source": "ozbargain-uk",
-      "fetchedAt": "2026-10-30T09:52:45.088Z",
+      "fetchedAt": "2026-10-30T10:12:00.804Z",
       "notes": null,
       "excludedBecause": "expired"
     },
@@ -1666,7 +1792,7 @@
       "termsUrl": "https://iwantthatflight.com.au/deal/london-flights-on-5-star-singapore-airlines-from-1455-return-1?ozb=70",
       "url": "https://www.ozbargain.com.au/node/974045",
       "source": "ozbargain-uk",
-      "fetchedAt": "2026-10-30T09:52:45.088Z",
+      "fetchedAt": "2026-10-30T10:12:00.804Z",
       "notes": null,
       "excludedBecause": "expired"
     },
@@ -1687,7 +1813,7 @@
       "termsUrl": "https://www.qantas.com/en-au/book/flight-deals?deal-type=international-red-tail-sale#deals",
       "url": "https://www.ozbargain.com.au/node/969368",
       "source": "ozbargain-hong-kong",
-      "fetchedAt": "2026-10-30T09:52:45.088Z",
+      "fetchedAt": "2026-10-30T10:12:00.804Z",
       "notes": null,
       "excludedBecause": "expired"
     },
@@ -1708,7 +1834,7 @@
       "termsUrl": "https://www.beatthatflight.com.au/deals/airasia-one-way-per-syd-mel-bali-from-143-singapore-183-kl-194-phuket-202-bangkok-221-tokyo-266-more",
       "url": "https://www.ozbargain.com.au/node/963880",
       "source": "ozbargain-hong-kong",
-      "fetchedAt": "2026-10-30T09:52:45.088Z",
+      "fetchedAt": "2026-10-30T10:12:00.804Z",
       "notes": null,
       "excludedBecause": "expired"
     },
@@ -1733,7 +1859,7 @@
       "termsUrl": "https://iwantthatflight.com.au/deal/flights-to-switzerland-italy-and-ireland-from-796-return-on-etihad-in-october-november-26?ozb=70",
       "url": "https://www.ozbargain.com.au/node/958537",
       "source": "ozbargain-ireland",
-      "fetchedAt": "2026-10-30T09:52:45.088Z",
+      "fetchedAt": "2026-10-30T10:12:00.804Z",
       "notes": null,
       "excludedBecause": "expired"
     },
@@ -1754,7 +1880,7 @@
       "termsUrl": "https://www.beatthatflight.com.au/deals/etihad-business-class-europe-melbourne-sydney-from-3532-apr-jun-2026",
       "url": "https://www.ozbargain.com.au/node/953271",
       "source": "ozbargain-ireland",
-      "fetchedAt": "2026-10-30T09:52:45.088Z",
+      "fetchedAt": "2026-10-30T10:12:00.804Z",
       "notes": null,
       "excludedBecause": "expired"
     },
@@ -1775,7 +1901,7 @@
       "termsUrl": "https://iwantthatflight.com.au/deal/flights-to-europe-from-796-return-on-etihad-in-october-november-26?ozb=70",
       "url": "https://www.ozbargain.com.au/node/954429",
       "source": "ozbargain-ireland",
-      "fetchedAt": "2026-10-30T09:52:45.088Z",
+      "fetchedAt": "2026-10-30T10:12:00.804Z",
       "notes": null,
       "excludedBecause": "expired"
     },
@@ -1796,7 +1922,7 @@
       "termsUrl": "https://www.google.com/travel/flights/search?tcfs=ChIKCC9tLzA2eTU3GgZTeWRuZXkS&amp;tfs=CBwQAhojEgoyMDI2LTAyLTA1agcIARIDQk5FcgwIAhIIL20vMDJjZnQaIxIKMjAyNi0wMi0yNGoMCAISCC9tLzAyY2Z0cgcIARIDQk5FQAFIAXABggELCP___________wGYAQGyAQsSCS9tLzAxOTVwZA&amp;tfu=EgYIACACKAEiAA",
       "url": "https://www.ozbargain.com.au/node/910637",
       "source": "ozbargain-ireland",
-      "fetchedAt": "2026-10-30T09:52:45.088Z",
+      "fetchedAt": "2026-10-30T10:12:00.804Z",
       "notes": null,
       "alsoListedAt": [
         "https://www.ozbargain.com.au/node/978242"

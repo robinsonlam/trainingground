@@ -4,13 +4,14 @@ Finds ways to get to **Belfast** and **Hong Kong** around **Sep–Oct 2027**, de
 competitions/giveaways open to AU (or HK) residents, airline sales, and points/frequent-flyer offers.
 
 ```
-npm start                 # node trip-deals.mjs --out results.json --report RESULTS.md
+npm start                 # writes results.json, RESULTS.md, COMPETITIONS.md, competitions.csv
 node trip-deals.mjs --sources ozbargain-competitions,cathaypacific --delay 1000
 npm test                  # unit tests (offline)
 npm run test:e2e          # live run against the real sites (~4 min)
 ```
 
-No dependencies (Node ≥ 20, built-in `fetch`). Options: `--out FILE` (JSON), `--report FILE` (markdown),
+No dependencies (Node ≥ 20, built-in `fetch`). Options: `--out FILE` (JSON), `--report FILE` (markdown), `--competitions FILE` (prioritised competition checklist),
+`--csv FILE` (competitions as CSV),
 `--sources a,b`, `--delay MS` (per-host pacing, default 800), `--now ISO` (pretend date).
 Exit codes: 0 = data collected, 1 = every source failed, 2 = bad arguments.
 
@@ -23,7 +24,13 @@ Exit codes: 0 = data collected, 1 = every source failed, 2 = bad arguments.
    **flexible** (travel/flight vouchers usable anywhere), **points** (frequent-flyer offers). Everything else is dropped.
 4. Dedupes (same item twice, or the same competition on several aggregators), then excludes items that are
    expired, not open to AU/HK residents, or whose stated travel window can't cover Sep–Oct 2027 (kept in `excluded` with a reason).
-5. Prints a table sorted soonest-closing first and optionally writes JSON + `RESULTS.md`.
+5. For competitions, works out how winners are picked (draw / skill / instant), whether a purchase is needed, the effort involved,
+   the travel part of the prize, and how many travel prizes there are. It then ranks each one:
+   **A** enter now (free; destination prize or travel voucher ≥ $2,000), **B** quick entry (free; $500–$1,999 voucher),
+   **C** purchase required, **D** low value for this trip.
+6. Prints a table sorted soonest-closing first and optionally writes JSON, `RESULTS.md`, `COMPETITIONS.md` and `competitions.csv`.
+
+[ACTION-PLAN.md](ACTION-PLAN.md) is the hand-written recommendation based on a run's output.
 
 | Source | Method | Gives |
 |---|---|---|

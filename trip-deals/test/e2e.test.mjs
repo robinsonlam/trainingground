@@ -16,7 +16,9 @@ test('e2e: live run collects, filters, dedupes and sorts open items', { timeout:
   const dir = await mkdtemp(join(tmpdir(), 'td-'));
   const out = join(dir, 'results.json');
   const report = join(dir, 'RESULTS.md');
-  const { code, stdout, stderr } = await runCli(['--out', out, '--report', report]);
+  const comps = join(dir, 'COMPETITIONS.md');
+  const csv = join(dir, 'competitions.csv');
+  const { code, stdout, stderr } = await runCli(['--out', out, '--report', report, '--competitions', comps, '--csv', csv]);
   assert.equal(code, 0, `CLI failed: ${stderr}`);
   assert.match(stdout, /^closes\s+type/m, 'prints a table');
   const data = JSON.parse(await readFile(out, 'utf8'));
@@ -53,6 +55,17 @@ test('e2e: live run collects, filters, dedupes and sorts open items', { timeout:
   const md = await readFile(report, 'utf8');
   for (const r of data.results) assert.ok(md.includes(r.url), `report missing link for ${r.title}`);
   assert.match(md, /## Sources/);
+
+  const compRows = data.results.filter((r) => r.type === 'competition');
+  const compMd = await readFile(comps, 'utf8');
+  const csvLines = (await readFile(csv, 'utf8')).trim().split('\n');
+  assert.equal(csvLines.length, compRows.length + 1, 'one CSV row per competition');
+  for (const r of compRows) {
+    assert.ok(['A', 'B', 'C', 'D'].includes(r.priority), `no priority for ${r.title}`);
+    assert.ok(['low', 'medium', 'high'].includes(r.effort));
+    assert.ok(r.winners >= 1);
+    assert.ok(compMd.includes(r.url), `COMPETITIONS.md missing ${r.title}`);
+  }
 });
 
 test('e2e: bad arguments exit with code 2', async () => {

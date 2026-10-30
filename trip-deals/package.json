@@ -4,7 +4,7 @@
   "type": "module",
   "engines": { "node": ">=20" },
   "scripts": {
-    "start": "node trip-deals.mjs --out results.json --report RESULTS.md",
+    "start": "node trip-deals.mjs --out results.json --report RESULTS.md --competitions COMPETITIONS.md --csv competitions.csv",
     "test": "node --test test/unit.test.mjs",
     "test:e2e": "node --test test/e2e.test.mjs"
   }

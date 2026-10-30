@@ -222,10 +222,57 @@ export function parseMoney(s) {
   return m ? Number(m[1]) : null;
 }
 
+// --- competition entry classification ------------------------------------------------------
+
+// From entry-method / T&C text: how winners are picked, whether a purchase is needed, and rough effort.
+export function classifyEntry(text) {
+  const t = String(text ?? '');
+  const entryKind = /words or less|judg(ed|ing)|creative|best (answer|entr)|game of skill|skill/i.test(t) ? 'skill'
+    : /instant win/i.test(t) ? 'instant'
+    : /lucky draw|drawn? (at )?random|random (draw|selection)|draw(n)? (will|on)/i.test(t) ? 'draw' : null;
+  const purchaseRequired = /no purchase (is )?(necessary|required)/i.test(t) ? false
+    : /must (purchase|buy|spend)|purchase (a|an|any|at least|of)\b|qualifying purchase|purchase required|proof of purchase|\bspend \$|\bbuy (a|any|an)\b|Purchase\b/.test(t) || /purchase (a|an|any|at least)/i.test(t) ? true : null;
+  const effort = entryKind === 'skill' ? 'high'
+    : /like\/follow|comment|share|refer|recruit|tag a friend|instagram|facebook|account\/membership|member/i.test(t) ? 'medium' : 'low';
+  return { entryKind, purchaseRequired, effort };
+}
+
+const TRAVEL_WORDS = 'travel|flight|holiday|luxury escapes|arrival|qantas|airline|trip|getaway';
+
+// How many of the travel prize are given away: "1 of 5 $10K Travel Vouchers" -> 5,
+// "Win $2,500 Flight Centre GC ... or 1 of 29 Minor Prizes" -> 1 (the 29 are minor prizes).
+export function prizeCount(title) {
+  const re = new RegExp(`\\b1 of (\\d+)\\b[^$]{0,15}\\$\\s?[\\d,.]+\\s*k?\\b[^$+]{0,45}(${TRAVEL_WORDS})`, 'i');
+  const m = String(title ?? '').match(re);
+  return m ? Number(m[1]) : 1;
+}
+
+// Largest dollar amount in the title that is attached to something travel-related.
+export function travelValueAud(title) {
+  let best = 0;
+  const re = /\$\s?(\d[\d,]*)(\.\d+)?\s*(k\b)?([^$+]{0,45})/gi;
+  for (const m of String(title ?? '').matchAll(re)) {
+    if (!new RegExp(TRAVEL_WORDS, 'i').test(m[4])) continue;
+    const v = Number(m[1].replace(/,/g, '')) * (m[3] ? 1000 : 1);
+    if (v > best) best = v;
+  }
+  return best || null;
+}
+
+// A = enter now, B = quick entry if you have time, C = only if you'd buy the product anyway, D = low value.
+export function prioritise(it) {
+  if (it.type !== 'competition') return null;
+  if (it.purchaseRequired) return 'C';
+  const tv = it.travelValueAud ?? 0;
+  if (it.tier === 'direct' || it.tier === 'reachable' || tv >= 2000) return 'A';
+  if (tv >= 500) return 'B';
+  return 'D';
+}
+
 export function normaliseItem(raw, { now = new Date(), fetchedAt = now.toISOString() } = {}) {
   const rel = raw.relevance ?? relevance(`${raw.title} ${raw.relevanceText ?? ''}`);
   const tw = raw.travelWindow ?? null;
-  return {
+  const item = {
     type: raw.type,
     title: decodeEntities(raw.title).replace(/\s+/g, ' ').trim(),
     destination: rel?.destination ?? null,
@@ -245,6 +292,19 @@ export function normaliseItem(raw, { now = new Date(), fetchedAt = now.toISOStri
     fetchedAt,
     notes: raw.notes ?? null,
   };
+  if (item.type === 'competition') {
+    const c = classifyEntry(`${raw.entryKindText ?? ''} ${item.entryMethod ?? ''}`);
+    Object.assign(item, {
+      entryKind: c.entryKind,
+      purchaseRequired: raw.purchaseRequired ?? c.purchaseRequired,
+      effort: c.effort,
+      winners: prizeCount(item.title),
+      travelValueAud: travelValueAud(item.title),
+      ozbEntrants: raw.ozbEntrants ?? null,
+    });
+    item.priority = prioritise(item);
+  }
+  return item;
 }
 
 const titleTokens = (t) => new Set(t.toLowerCase().replace(/&/g, ' and ').replace(/[^a-z0-9$ ]/g, ' ').split(/\s+/)

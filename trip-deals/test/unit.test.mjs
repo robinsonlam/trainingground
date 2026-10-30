@@ -325,3 +325,52 @@ test('makeFetcher retries a network error once then gives up', async () => {
   await assert.rejects(f.get('https://x.example/a'), /network error/);
   assert.equal(n, 4, 'robots.txt (2 tries, then treated as empty) + page (2 tries)');
 });
+
+// ---------------------------------------------------------------------------- competition triage
+import { classifyEntry, prizeCount, travelValueAud, prioritise } from '../lib.mjs';
+import { renderCompetitions, renderCsv } from '../trip-deals.mjs';
+
+test('classifyEntry reads draw/skill, purchase and effort', () => {
+  assert.deepEqual(classifyEntry('Lucky Draw Website; Email Subscription'), { entryKind: 'draw', purchaseRequired: null, effort: 'low' });
+  assert.equal(classifyEntry('Winners are selected through a judging process based on creative merit').entryKind, 'skill');
+  assert.equal(classifyEntry('No. of Words or Less').effort, 'high');
+  assert.equal(classifyEntry('participants must purchase a LASER branded product').purchaseRequired, true);
+  assert.equal(classifyEntry('make a qualifying purchase of an eligible Cadbury product').purchaseRequired, true);
+  assert.equal(classifyEntry('Free to enter, no purchase necessary').purchaseRequired, false);
+  assert.equal(classifyEntry('Instagram, Website; Like/Follow/Comment/Share').effort, 'medium');
+});
+
+test('prizeCount and travelValueAud parse titles', () => {
+  assert.equal(prizeCount('Win 1 of 5 $10K Travel Vouchers'), 5);
+  assert.equal(prizeCount('Win a Trip to London'), 1);
+  assert.equal(prizeCount('Win $2,500 Flight Centre GC, $1000 Chemist Warehouse GC & More or 1 of 29 Minor Prizes'), 1, 'regression: minor prizes are not the travel prize');
+  assert.equal(prizeCount('Win 1 of 3 Packages of $5,000 Luxury Escapes Voucher'), 3);
+  assert.equal(prizeCount('Win a Trip for Two to London & 1 of 100 Ebenezer Merchandise Packs'), 1);
+  assert.equal(travelValueAud('Win 1 of 5 $10K Travel Vouchers & 1 of 200 $50 Visa Gift Cards'), 10000);
+  assert.equal(travelValueAud('Win a $4,000 Flight Centre Gift Voucher + a $1,000 Salty Crush Gift Voucher'), 4000);
+  assert.equal(travelValueAud('Win a Matilda Match + $5,000 Travel Voucher + $5,000 Ecosa Voucher'), 5000);
+  assert.equal(travelValueAud('Win a $1000 Chemist Warehouse Gift Card'), null);
+});
+
+test('prioritise ranks free destination/large-voucher comps first, purchase-required as C', () => {
+  assert.equal(prioritise({ type: 'competition', tier: 'reachable', purchaseRequired: null }), 'A');
+  assert.equal(prioritise({ type: 'competition', tier: 'reachable', purchaseRequired: true }), 'C');
+  assert.equal(prioritise({ type: 'competition', tier: 'flexible', travelValueAud: 4000 }), 'A');
+  assert.equal(prioritise({ type: 'competition', tier: 'flexible', travelValueAud: 1000 }), 'B');
+  assert.equal(prioritise({ type: 'competition', tier: 'flexible', travelValueAud: null }), 'D');
+  assert.equal(prioritise({ type: 'sale' }), null);
+});
+
+test('renderCompetitions groups by priority and renderCsv escapes', () => {
+  const r = (o) => normaliseItem({ type: 'competition', url: 'https://x/1', source: 's', closesAt: '2026-12-01T23:59:00+11:00', ...o }, { now: NOW });
+  const data = { generatedAt: NOW.toISOString(), results: [
+    r({ title: 'Win a $500 Flight Voucher, "bonus"', url: 'https://x/b' }),
+    r({ title: 'Win a Trip to London', entryMethod: 'must purchase a product', url: 'https://x/c' }),
+    r({ title: 'Win a $5,000 Travel Voucher', url: 'https://x/a', ozbEntrants: 12 }),
+  ] };
+  const md = renderCompetitions(data);
+  assert.ok(md.indexOf('https://x/a') < md.indexOf('https://x/b') && md.indexOf('https://x/b') < md.indexOf('https://x/c'), 'A before B before C');
+  const csv = renderCsv(data).trim().split('\n');
+  assert.equal(csv.length, 4);
+  assert.match(csv[2], /"Win a \$500 Flight Voucher, ""bonus"""/);
+});

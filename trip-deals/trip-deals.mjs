@@ -1,6 +1,7 @@
 // Collect competitions, airline sales and points offers for a Sep-Oct 2027 trip to Belfast and Hong Kong
 // (from Sydney or Hong Kong), using public RSS/JSON/HTML pages only.
-// Usage: node trip-deals.mjs [--out results.json] [--report RESULTS.md] [--sources a,b] [--delay 800] [--now ISO]
+// Usage: node trip-deals.mjs [--out results.json] [--report RESULTS.md] [--competitions COMPETITIONS.md] [--csv competitions.csv]
+//        [--sources a,b] [--delay 800] [--now ISO]
 // Exit codes: 0 = at least one source returned data, 1 = every source failed, 2 = bad arguments.
 // Never enters competitions. Respects robots.txt; a 403/CAPTCHA is recorded as "blocked" and not retried.
 import { writeFile } from 'node:fs/promises';
@@ -153,12 +154,54 @@ export function renderReport(data) {
   return L.join('\n');
 }
 
+// ------------------------------------------------------------------------- competition list
+
+const PRIORITY = {
+  A: 'Enter now — free, and the prize gets you to Belfast/HK or is a big travel voucher',
+  B: 'Quick entry if you have time — free, smaller travel voucher',
+  C: 'Only if you would buy the product anyway — purchase required',
+  D: 'Low value for this trip — travel voucher under $500 or bundled with an unrelated prize',
+};
+const yn = (v) => (v === true ? 'yes' : v === false ? 'no' : '?');
+
+export function competitionRows(data) {
+  const order = { A: 0, B: 1, C: 2, D: 3 };
+  return data.results.filter((r) => r.type === 'competition')
+    .sort((a, b) => order[a.priority] - order[b.priority] || (Date.parse(a.closesAt) || Infinity) - (Date.parse(b.closesAt) || Infinity));
+}
+
+export function renderCompetitions(data) {
+  const rows = competitionRows(data);
+  const L = ['# Competitions: Belfast / Hong Kong / travel vouchers', ''];
+  L.push(`Fetched ${data.generatedAt.slice(0, 10)} by \`node trip-deals.mjs\`. ${rows.length} open competitions that AU residents can enter. Nothing has been entered; every row links to the page it came from — read the T&Cs before entering.`, '');
+  L.push('**Columns:** *Travel $* = the travel/flight part of the prize parsed from the title; *Travel prizes* = how many of that prize are given away; *Kind* = random draw, skill (judged answer, usually better odds) or instant win; *Effort* = low (form/email), medium (social, referral, membership), high (written answer); *OzB entrants* = OzBargain members who have marked it entered (a rough popularity signal, not the real entry count).', '');
+  for (const p of ['A', 'B', 'C', 'D']) {
+    const group = rows.filter((r) => r.priority === p);
+    L.push(`## ${p}. ${PRIORITY[p]} (${group.length})`, '');
+    if (!group.length) { L.push('_None today._', ''); continue; }
+    L.push('| ✓ | Closes | Competition | Prize value | Travel $ | Travel prizes | Kind | Effort | Purchase? | Open to | OzB entrants | Links |', '|---|---|---|---|---|---|---|---|---|---|---|---|');
+    for (const r of group) {
+      L.push(`| ☐ | ${day(r.closesAt)} | ${md(r.title)} | ${md(r.value ?? '?')} | ${r.travelValueAud ? `$${r.travelValueAud.toLocaleString('en-AU')}` : '-'} | ${r.winners} | ${r.entryKind ?? '?'} | ${r.effort} | ${yn(r.purchaseRequired)} | ${md(r.eligibility ?? '?')} | ${r.ozbEntrants ?? '-'} | [listing](${r.url})${r.termsUrl ? ` · [enter/T&Cs](${r.termsUrl})` : ''}${(r.alsoListedAt ?? []).map((u, i) => ` · [alt ${i + 1}](${u})`).join('')} |`);
+    }
+    L.push('');
+  }
+  return L.join('\n');
+}
+
+export function renderCsv(data) {
+  const cols = ['priority', 'closesAt', 'title', 'value', 'travelValueAud', 'winners', 'entryKind', 'effort', 'purchaseRequired', 'eligibility', 'destination', 'ozbEntrants', 'url', 'termsUrl', 'source'];
+  const q = (v) => (v == null ? '' : /[",\n]/.test(String(v)) ? `"${String(v).replace(/"/g, '""')}"` : String(v));
+  return [cols.join(','), ...competitionRows(data).map((r) => cols.map((c) => q(r[c])).join(','))].join('\n') + '\n';
+}
+
 async function main() {
   const opts = parseArgs(process.argv.slice(2));
   try {
     const data = await run(opts);
     if (opts.out) await writeFile(opts.out === true ? 'results.json' : opts.out, JSON.stringify(data, null, 2));
     if (opts.report) await writeFile(opts.report === true ? 'RESULTS.md' : opts.report, renderReport(data));
+    if (opts.competitions) await writeFile(opts.competitions === true ? 'COMPETITIONS.md' : opts.competitions, renderCompetitions(data));
+    if (opts.csv) await writeFile(opts.csv === true ? 'competitions.csv' : opts.csv, renderCsv(data));
     console.log(formatTable(data.results));
     console.log(`\n${data.results.length} open items, ${data.excluded.length} excluded (expired/ineligible/wrong travel window), ${data.irrelevantCount} irrelevant.`);
     for (const [n, s] of Object.entries(data.status)) console.error(`source ${n}: ${s.ok ? `ok (${s.count})` : `${s.blocked ? 'BLOCKED' : 'FAILED'} ${s.error}`}`);
