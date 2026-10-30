@@ -1,0 +1,11 @@
+{
+  "name": "trip-deals",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "start": "node trip-deals.mjs --out results.json --report RESULTS.md",
+    "test": "node --test test/unit.test.mjs",
+    "test:e2e": "node --test test/e2e.test.mjs"
+  }
+}
