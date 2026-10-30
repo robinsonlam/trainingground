@@ -1,6 +1,6 @@
 // Source fetchers + parsers. Parsers are pure (html/xml/json in, raw items out) so they are unit-tested
 // with small fixtures; fetchers go through ctx.get(), which enforces robots.txt, block detection and pacing.
-import { htmlToText, decodeEntities, parseDate, parseTravelWindow, relevance, eligibleAuHk } from './lib.mjs';
+import { htmlToText, decodeEntities, parseDate, parseTravelWindow, relevance, eligibleAuHk, parseDateRange, eventRelevance } from './lib.mjs';
 
 export class BlockedError extends Error {}
 export class DisallowedError extends Error {}
@@ -277,6 +277,54 @@ export function parsePointHacksFeed(xml, now, maxAgeDays = 60) {
   return out;
 }
 
+// ---------------------------------------------------------------- conferences & events (business-trip options)
+const event = (o) => ({
+  type: 'event', origin: null, value: null, closesAt: null,
+  eligibility: 'Open registration (needs employer approval/funding)', eligible: true,
+  relevance: eventRelevance(o.location), ...o,
+  title: o.location ? `${o.title} — ${o.location}` : o.title,
+});
+
+// conf.researchr.org front-page carousel: software-engineering / PL conferences with city and dates.
+export function parseResearchr(html, now) {
+  const out = [];
+  for (const m of html.matchAll(/<a href="(https:\/\/conf\.researchr\.org\/home\/[^"]+)"[^>]*>[\s\S]{0,600}?<h1>([^<]+)<\/h1>(?:<h3>([^<]*)<\/h3>)?<h5>([^<]+)<\/h5>/g)) {
+    const [, url, name, location, dates] = m;
+    if (!location) continue; // dates-TBA placeholders have no venue
+    out.push(event({ title: decodeEntities(name).trim(), location: decodeEntities(location).trim(), travelWindow: parseDateRange(decodeEntities(dates), now), url, source: 'conf.researchr.org', notes: 'Software engineering / programming languages' }));
+  }
+  return out;
+}
+
+// dev.events RSS: "X is happening on December 10, 2026 in Tokyo, Japan, Asia. More information: URL".
+export function parseDevEvents(xml, now) {
+  const out = [];
+  for (const it of xml.match(/<item>[\s\S]*?<\/item>/g) ?? []) {
+    const title = decodeEntities(it.match(/<title>(?:<!\[CDATA\[)?([\s\S]*?)(?:\]\]>)?<\/title>/)?.[1] ?? '').trim();
+    const desc = decodeEntities(it.match(/<description>(?:<!\[CDATA\[)?([\s\S]*?)(?:\]\]>)?<\/description>/)?.[1] ?? '');
+    const m = desc.match(/is happening on ([A-Z][a-z]+ \d{1,2}, \d{4}) in ([^.]+?)\. More information/);
+    if (!title || !m) continue;
+    const tags = [...it.matchAll(/<category>([^<]+)<\/category>/g)].map((c) => c[1]).join(', ');
+    out.push(event({ title, location: m[2].replace(/, (Asia|Europe|Africa|North America|South America|Oceania)$/, ''), travelWindow: parseDateRange(m[1], now),
+      url: it.match(/<link>([^<]+)<\/link>/)?.[1]?.trim(), source: 'dev.events', notes: tags ? `Topics: ${tags}` : null }));
+  }
+  return out;
+}
+
+// WikiCFP topic RSS: "<full name> [Location] [Dec 11, 2026 - Dec 13, 2026]".
+export function parseWikiCfp(xml, now, topic) {
+  const out = [];
+  for (const it of xml.match(/<item>[\s\S]*?<\/item>/g) ?? []) {
+    const title = decodeEntities(decodeEntities(it.match(/<title>([\s\S]*?)<\/title>/)?.[1] ?? '')).trim();
+    const desc = decodeEntities(decodeEntities(it.match(/<description>([\s\S]*?)<\/description>/)?.[1] ?? ''));
+    const m = desc.match(/\[([^\]]+)\]\s*\[([^\]]+)\]\s*$/);
+    if (!title || !m) continue;
+    out.push(event({ title, location: m[1].trim(), travelWindow: parseDateRange(m[2], now),
+      url: decodeEntities(it.match(/<link>([^<]+)<\/link>/)?.[1] ?? '').trim(), source: 'wikicfp', notes: `Call for papers (${topic}); speaking/presenting is the usual way to get a conference funded` }));
+  }
+  return out;
+}
+
 // ---------------------------------------------------------------- source registry
 // Multi-feed sources keep what they got when one feed fails; the failure goes in the source notes.
 // Throws only when every feed failed (rethrowing the first error so blocks stay classified).
@@ -372,6 +420,10 @@ export const SOURCES = {
   'pointhacks': async (ctx) => {
     return eachFeed(ctx, ['/news/feed/', '/category/credit-cards/feed/'], async (f) => parsePointHacksFeed(await ctx.get(`https://www.pointhacks.com.au${f}`), ctx.now));
   },
+  'conf.researchr.org': async (ctx) => parseResearchr(await ctx.get('https://conf.researchr.org/'), ctx.now),
+  'dev.events': async (ctx) => parseDevEvents(await ctx.get('https://dev.events/rss.xml'), ctx.now),
+  'wikicfp': async (ctx) => eachFeed(ctx, ['robotics', 'software engineering', 'artificial intelligence', 'automation', 'computer vision', 'embedded systems'],
+    async (t) => parseWikiCfp(await ctx.get(`http://www.wikicfp.com/cfp/rss?cat=${encodeURIComponent(t)}`), ctx.now, t)),
   // Pages checked for access only: they either block automated clients or render offers client-side.
   // We record the outcome so the report shows they were tried; nothing is parsed from them.
   'probe-only': async (ctx) => {
@@ -386,11 +438,19 @@ export const SOURCES = {
       'Skyscanner SYD-HKG': 'https://www.skyscanner.com.au/routes/syda/hkg/sydney-to-hong-kong.html',
       'Google Flights search': 'https://www.google.com/travel/flights/search?q=SYD%20to%20BFS',
       'Belfast International Airport': 'https://www.belfastairport.com/',
+      'IEEE RAS upcoming robotics conferences': 'https://www.ieee-ras.org/news/upcoming-conferences/',
+      'ICC Belfast what\'s on': 'https://www.iccbelfast.com/whats-on',
+      'HKCEC event calendar': 'https://www.hkcec.com/en/event-calendar',
+      'HKTDC Electronics Fair (Autumn) — RoboPark': 'https://www.hktdc.com/event/hkelectronicsfairae/en',
+      'HKTDC InnoEX (AI & robotics)': 'https://www.hktdc.com/event/innoex/en',
     };
     for (const [name, u] of Object.entries(pages)) {
       try {
         const html = await ctx.get(u);
-        const rel = /belfast|hong kong|dublin|london/i.test(htmlToText(html)) ? 'no parsable fares/competitions in static HTML' : 'no matching offers in static HTML';
+        const text = htmlToText(html);
+        const rel = /HKTDC|IEEE RAS|ICC Belfast|HKCEC/.test(name)
+          ? (/\b2027\b/.test(text) ? 'mentions 2027 but no parsable 2027 event dates in static HTML' : 'no 2027 event dates published (or loaded client-side)')
+          : /belfast|hong kong|dublin|london/i.test(text) ? 'no parsable fares/competitions in static HTML' : 'no matching offers in static HTML';
         ctx.probe(name, u, { ok: true, result: rel });
       } catch (e) {
         ctx.probe(name, u, { ok: false, blocked: e instanceof BlockedError, disallowed: e instanceof DisallowedError, error: e.message });

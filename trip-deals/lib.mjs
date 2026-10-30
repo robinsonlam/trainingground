@@ -130,6 +130,38 @@ export function parseTravelWindow(text, now = new Date()) {
   return null;
 }
 
+// "Sun 25 April - Sat 1 May 2027", "Tue 19 - Fri 22 October 2027", "Dec 11, 2026 - Dec 13, 2026",
+// "December 10, 2026" -> { from, to, text } (ISO). Missing start month/year are borrowed from the end date.
+export function parseDateRange(text, now = new Date()) {
+  const t = String(text ?? '').replace(/\b(mon|tue|wed|thu|fri|sat|sun)[a-z]*\.?,?\s+/gi, '').replace(/\s+/g, ' ').trim();
+  const [a, b] = t.split(/\s+(?:-|–|to)\s+/);
+  const to = parseDate(b ?? a, now);
+  if (!to) return null;
+  let from = to;
+  if (b) {
+    const hasMonth = new RegExp(MONTH_RE, 'i').test(a);
+    const y = to.slice(0, 4);
+    const fromTxt = hasMonth ? (/\d{4}/.test(a) ? a : `${a} ${y}`) : `${a} ${to.slice(5, 7) && MONTHS[Number(to.slice(5, 7)) - 1]} ${y}`;
+    from = parseDate(fromTxt, now) ?? to;
+    // "28 Dec - 2 Jan 2027": start is in the previous year.
+    if (Date.parse(from) > Date.parse(to)) from = parseDate(fromTxt.replace(y, String(Number(y) - 1)), now) ?? to;
+    from = from.replace(/T23:59/, 'T00:00');
+  } else from = to.replace(/T23:59/, 'T00:00');
+  return { from, to, text: String(text).trim() };
+}
+
+// Where an event is, as a trip option: Belfast/HK direct; UK/Ireland and HK's neighbours (Macao, Shenzhen) reachable.
+export function eventRelevance(location) {
+  const l = String(location ?? '');
+  if (/belfast|northern ireland/i.test(l)) return { tier: 'direct', destination: 'Belfast / Northern Ireland' };
+  if (/hong ?kong/i.test(l)) return { tier: 'direct', destination: 'Hong Kong' };
+  if (/maca[ou]|taipa|shenzhen|guangzhou|zhuhai/i.test(l)) return { tier: 'reachable', destination: 'Near Hong Kong (fly via HKG)' };
+  if (/\b(ireland|dublin|cork|galway|limerick|united kingdom|england|scotland|wales|london|manchester|edinburgh|glasgow|birmingham|bristol|leeds|cambridge|oxford)\b|\bUK\b/i.test(l)) {
+    return { tier: 'reachable', destination: 'UK / Ireland (Belfast reachable)' };
+  }
+  return null;
+}
+
 export const TARGET_WINDOW = { from: '2027-09-01T00:00:00+10:00', to: '2027-10-31T23:59:00+11:00' };
 
 // 'yes' when the stated window overlaps the target window, 'no' when it clearly doesn't, 'unknown' otherwise.
@@ -174,25 +206,38 @@ export function eligibleAuHk(text) {
 
 // --- robots.txt + block detection ------------------------------------------------------------
 
-// Minimal robots.txt check for the `User-agent: *` group (prefix + `*` wildcard + `$` anchor).
-export function robotsAllows(robotsTxt, path) {
-  if (!robotsTxt) return true;
+// robots.txt groups: [{ agents, rules: [{allow, pat}], crawlDelay }].
+function robotsGroups(robotsTxt) {
   const groups = [];
   let cur = null; let lastWasAgent = false;
-  for (const raw of robotsTxt.split(/\r?\n/)) {
+  for (const raw of String(robotsTxt ?? '').split(/\r?\n/)) {
     const line = raw.replace(/#.*/, '').trim();
     const m = line.match(/^([a-z-]+)\s*:\s*(.*)$/i);
     if (!m) continue;
     const key = m[1].toLowerCase();
     if (key === 'user-agent') {
-      if (!lastWasAgent) groups.push((cur = { agents: [], rules: [] }));
+      if (!lastWasAgent) groups.push((cur = { agents: [], rules: [], crawlDelay: null }));
       cur.agents.push(m[2].trim().toLowerCase());
       lastWasAgent = true;
     } else {
       lastWasAgent = false;
       if (cur && (key === 'allow' || key === 'disallow') && m[2]) cur.rules.push({ allow: key === 'allow', pat: m[2].trim() });
+      if (cur && key === 'crawl-delay' && Number(m[2]) >= 0) cur.crawlDelay = Number(m[2]);
     }
   }
+  return groups;
+}
+
+// Crawl-delay (seconds) for the `User-agent: *` group, or null.
+export function robotsCrawlDelay(robotsTxt) {
+  const g = robotsGroups(robotsTxt).find((x) => x.agents.includes('*') && x.crawlDelay != null);
+  return g ? g.crawlDelay : null;
+}
+
+// Minimal robots.txt check for the `User-agent: *` group (prefix + `*` wildcard + `$` anchor).
+export function robotsAllows(robotsTxt, path) {
+  if (!robotsTxt) return true;
+  const groups = robotsGroups(robotsTxt);
   const rules = groups.filter((g) => g.agents.includes('*')).flatMap((g) => g.rules);
   let best = null;
   for (const r of rules) {
@@ -336,14 +381,15 @@ export function dedupe(items) {
   const out = [];
   for (const it of items) {
     const tok = titleTokens(it.title);
-    const day = it.closesAt?.slice(0, 10);
+    const when = (x) => (x.closesAt ?? (x.type === 'event' ? x.travelWindow?.from : null))?.slice(0, 10);
+    const day = when(it);
     const tu = canonUrl(it.termsUrl);
     const dup = out.find((o) =>
       (o.type === it.type && o.title === it.title) ||
       (tu && canonUrl(o.termsUrl) === tu && o.type === it.type) ||
-      (o.type === it.type && day && o.closesAt?.slice(0, 10) === day && jaccard(titleTokens(o.title), tok) >= 0.5) ||
+      (o.type === it.type && day && when(o) === day && jaccard(titleTokens(o.title), tok) >= 0.5) ||
       // Aggregators reword titles; same closing day + same prize value + some shared words is the same comp.
-      (o.type === it.type && day && o.closesAt?.slice(0, 10) === day && it.valueAud && o.valueAud === it.valueAud && jaccard(titleTokens(o.title), tok) >= 0.2));
+      (o.type === it.type && day && when(o) === day && it.valueAud && o.valueAud === it.valueAud && jaccard(titleTokens(o.title), tok) >= 0.2));
     if (!dup) { out.push({ ...it }); continue; }
     for (const k of Object.keys(it)) if (dup[k] == null && it[k] != null) dup[k] = it[k];
     if (dup.source !== it.source || dup.url !== it.url) {
@@ -361,7 +407,7 @@ export function applyFilters(items, now = new Date()) {
     let reason = null;
     if (it.closesAt && Date.parse(it.closesAt) < now.getTime()) reason = 'expired';
     else if (it.eligible === false) reason = 'not open to (general) AU/HK residents';
-    else if (it.travelWindowFit === 'no') reason = 'travel window does not cover Sep-Oct 2027';
+    else if (it.travelWindowFit === 'no') reason = it.type === 'event' ? 'event is outside Sep-Oct 2027' : 'travel window does not cover Sep-Oct 2027';
     if (reason) excluded.push({ ...it, excludedBecause: reason }); else kept.push(it);
   }
   return { kept, excluded, irrelevant };

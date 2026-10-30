@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-30T11:03:34.610Z",
+  "generatedAt": "2026-10-30T11:19:54.772Z",
   "query": {
     "destinations": [
       "Belfast (BFS/BHD)",
@@ -18,46 +18,61 @@
     "virginaustralia": {
       "ok": true,
       "count": 0,
-      "ms": 1094
+      "ms": 914
     },
-    "pointhacks": {
+    "dev.events": {
       "ok": true,
-      "count": 2,
-      "ms": 1679
+      "count": 90,
+      "ms": 1014
     },
     "emirates": {
       "ok": true,
       "count": 18,
-      "ms": 1804
+      "ms": 1826
+    },
+    "pointhacks": {
+      "ok": true,
+      "count": 2,
+      "ms": 2221
+    },
+    "conf.researchr.org": {
+      "ok": true,
+      "count": 21,
+      "ms": 2386
     },
     "ozbargain-deals": {
       "ok": true,
       "count": 48,
-      "ms": 6741
-    },
-    "probe-only": {
-      "ok": true,
-      "count": 0,
-      "ms": 9166
+      "ms": 6712
     },
     "ozbargain-competitions": {
       "ok": true,
       "count": 200,
-      "ms": 11449
+      "ms": 11647
     },
     "aussiecomps.com": {
       "ok": true,
       "count": 10,
-      "ms": 16695,
+      "ms": 16204,
       "notes": [
         "listings per search {\"flights\":29,\"trip\":29,\"holiday\":14,\"travel\":29,\"voucher\":29,\"kong\":0,\"ireland\":0,\"belfast\":0,\"london\":0,\"europe\":1}",
         "77 keyword matches, 10 relevant"
       ]
     },
+    "probe-only": {
+      "ok": true,
+      "count": 0,
+      "ms": 18722
+    },
+    "wikicfp": {
+      "ok": true,
+      "count": 118,
+      "ms": 30069
+    },
     "competitions.com.au": {
       "ok": true,
       "count": 33,
-      "ms": 43194,
+      "ms": 33858,
       "notes": [
         "89 travel listings, 33 detail pages opened"
       ]
@@ -65,7 +80,7 @@
     "cathaypacific": {
       "ok": true,
       "count": 13,
-      "ms": 200184
+      "ms": 202710
     }
   },
   "probes": [
@@ -115,9 +130,9 @@
       "name": "Executive Traveller RSS",
       "url": "https://www.executivetraveller.com/rss",
       "ok": false,
-      "blocked": true,
+      "blocked": false,
       "disallowed": false,
-      "error": "blocked: HTTP 403"
+      "error": "HTTP 404 for https://www.executivetraveller.com/rss"
     },
     {
       "name": "Skyscanner SYD-HKG",
@@ -138,9 +153,39 @@
       "url": "https://www.belfastairport.com/",
       "ok": true,
       "result": "no parsable fares/competitions in static HTML"
+    },
+    {
+      "name": "IEEE RAS upcoming robotics conferences",
+      "url": "https://www.ieee-ras.org/news/upcoming-conferences/",
+      "ok": true,
+      "result": "no 2027 event dates published (or loaded client-side)"
+    },
+    {
+      "name": "ICC Belfast what's on",
+      "url": "https://www.iccbelfast.com/whats-on",
+      "ok": true,
+      "result": "no 2027 event dates published (or loaded client-side)"
+    },
+    {
+      "name": "HKCEC event calendar",
+      "url": "https://www.hkcec.com/en/event-calendar",
+      "ok": true,
+      "result": "no 2027 event dates published (or loaded client-side)"
+    },
+    {
+      "name": "HKTDC Electronics Fair (Autumn) — RoboPark",
+      "url": "https://www.hktdc.com/event/hkelectronicsfairae/en",
+      "ok": true,
+      "result": "no 2027 event dates published (or loaded client-side)"
+    },
+    {
+      "name": "HKTDC InnoEX (AI & robotics)",
+      "url": "https://www.hktdc.com/event/innoex/en",
+      "ok": true,
+      "result": "mentions 2027 but no parsable 2027 event dates in static HTML"
     }
   ],
-  "requests": 124,
+  "requests": 144,
   "results": [
     {
       "type": "competition",
@@ -159,7 +204,7 @@
       "termsUrl": "https://assets-oce.mkt.dynamics.com/c5b227c4-d39e-47b2-bdaa-765ef3d0eed1/digitalassets/standaloneforms/c38138e1-31a8-f111-b8de-6045bdc3f55c",
       "url": "https://www.ozbargain.com.au/node/979672",
       "source": "ozbargain-competitions",
-      "fetchedAt": "2026-10-30T11:03:46.059Z",
+      "fetchedAt": "2026-10-30T11:20:06.418Z",
       "notes": null,
       "id": "ozb-979672",
       "drawAt": null,
@@ -191,7 +236,7 @@
       "termsUrl": "https://lifecykel.com/pages/win-the-ultimate-reset",
       "url": "https://www.ozbargain.com.au/node/978373",
       "source": "ozbargain-competitions",
-      "fetchedAt": "2026-10-30T11:03:46.059Z",
+      "fetchedAt": "2026-10-30T11:20:06.419Z",
       "notes": null,
       "id": "ozb-978373",
       "drawAt": null,
@@ -220,7 +265,7 @@
       "termsUrl": "https://augustethelabel.com/pages/the-anywhere-escape",
       "url": "https://www.ozbargain.com.au/node/979160",
       "source": "ozbargain-competitions",
-      "fetchedAt": "2026-10-30T11:03:46.059Z",
+      "fetchedAt": "2026-10-30T11:20:06.419Z",
       "notes": null,
       "id": "ozb-979160",
       "drawAt": null,
@@ -252,7 +297,7 @@
       "termsUrl": "https://email.mixandmatchtravel.com.au/p/7GQX-FTM/win-a-500-mix-match-flight-voucher",
       "url": "https://www.ozbargain.com.au/node/979906",
       "source": "ozbargain-competitions",
-      "fetchedAt": "2026-10-30T11:03:46.059Z",
+      "fetchedAt": "2026-10-30T11:20:06.418Z",
       "notes": null,
       "id": "ozb-979906",
       "drawAt": "2026-11-02T23:59:00+11:00",
@@ -284,7 +329,7 @@
       "termsUrl": "https://www.shopback.com.au/velocityfrequentflyer",
       "url": "https://www.ozbargain.com.au/node/979616",
       "source": "ozbargain-travel",
-      "fetchedAt": "2026-10-30T11:03:41.352Z",
+      "fetchedAt": "2026-10-30T11:20:01.484Z",
       "notes": null
     },
     {
@@ -304,7 +349,7 @@
       "termsUrl": "https://www.blackpepper.com.au/pages/win-a-5000-holiday?tw_so&amp;adid=52557491623933",
       "url": "https://www.ozbargain.com.au/node/979072",
       "source": "ozbargain-competitions",
-      "fetchedAt": "2026-10-30T11:03:46.059Z",
+      "fetchedAt": "2026-10-30T11:20:06.419Z",
       "notes": null,
       "id": "ozb-979072",
       "drawAt": null,
@@ -336,7 +381,7 @@
       "termsUrl": "https://www.aussiecomps.com/ps/19320",
       "url": "https://www.aussiecomps.com/index.php?id=28374",
       "source": "aussiecomps.com",
-      "fetchedAt": "2026-10-30T11:03:51.306Z",
+      "fetchedAt": "2026-10-30T11:20:10.976Z",
       "notes": null,
       "id": "ac-28374",
       "drawAt": null,
@@ -365,7 +410,7 @@
       "termsUrl": "https://www.aussiecomps.com/ps/19304",
       "url": "https://www.aussiecomps.com/index.php?id=28358",
       "source": "aussiecomps.com",
-      "fetchedAt": "2026-10-30T11:03:51.306Z",
+      "fetchedAt": "2026-10-30T11:20:10.976Z",
       "notes": null,
       "id": "ac-28358",
       "drawAt": null,
@@ -394,7 +439,7 @@
       "termsUrl": "https://www.1cover.com.au/discount-code-promotions/asia-giveaway-26/",
       "url": "https://www.competitions.com.au/win-15k-asia-travel-voucher/75946/",
       "source": "competitions.com.au",
-      "fetchedAt": "2026-10-30T11:04:17.805Z",
+      "fetchedAt": "2026-10-30T11:20:28.630Z",
       "notes": null,
       "id": "cca-75946",
       "drawAt": null,
@@ -423,7 +468,7 @@
       "termsUrl": "https://iwantthatflight.com.au/deal/flights-to-europe-from-889-return-on-china-southern?ozb=70",
       "url": "https://www.ozbargain.com.au/node/979316",
       "source": "ozbargain-uk",
-      "fetchedAt": "2026-10-30T11:03:41.352Z",
+      "fetchedAt": "2026-10-30T11:20:01.484Z",
       "notes": null,
       "alsoListedAt": [
         "https://www.ozbargain.com.au/node/979316"
@@ -446,7 +491,7 @@
       "termsUrl": "https://www.ecosa.com.au/subscribe-matildas",
       "url": "https://www.ozbargain.com.au/node/979536",
       "source": "ozbargain-competitions",
-      "fetchedAt": "2026-10-30T11:03:46.059Z",
+      "fetchedAt": "2026-10-30T11:20:06.419Z",
       "notes": null,
       "id": "ozb-979536",
       "drawAt": null,
@@ -475,7 +520,7 @@
       "termsUrl": "https://musclerepublic.com/pages/win-a-getaway",
       "url": "https://www.ozbargain.com.au/node/975561",
       "source": "ozbargain-competitions",
-      "fetchedAt": "2026-10-30T11:03:46.059Z",
+      "fetchedAt": "2026-10-30T11:20:06.419Z",
       "notes": null,
       "id": "ozb-975561",
       "drawAt": "2026-11-19T23:59:00+11:00",
@@ -508,7 +553,7 @@
       "termsUrl": "https://www.stfrock.com.au/pages/spring-2026-giveaway",
       "url": "https://www.ozbargain.com.au/node/978230",
       "source": "ozbargain-competitions",
-      "fetchedAt": "2026-10-30T11:03:46.059Z",
+      "fetchedAt": "2026-10-30T11:20:06.419Z",
       "notes": null,
       "id": "ozb-978230",
       "drawAt": null,
@@ -537,7 +582,7 @@
       "termsUrl": "https://www.sheridan.com.au/competition/gift-of-rest",
       "url": "https://www.ozbargain.com.au/node/980442",
       "source": "ozbargain-competitions",
-      "fetchedAt": "2026-10-30T11:03:46.059Z",
+      "fetchedAt": "2026-10-30T11:20:06.418Z",
       "notes": null,
       "id": "ozb-980442",
       "drawAt": null,
@@ -569,7 +614,7 @@
       "termsUrl": "https://www.laserco.com.au/win-a-trip-for-two-to-london/?goal=0_ab8a0ecbfa-fc39abb0c3-460161288&mc_cid=fc39abb0c3&mc_eid=c9d39995d4",
       "url": "https://www.competitions.com.au/win-trip-two-london-ebenezer-merchandise-packs/76098/",
       "source": "competitions.com.au",
-      "fetchedAt": "2026-10-30T11:04:17.805Z",
+      "fetchedAt": "2026-10-30T11:20:28.630Z",
       "notes": null,
       "id": "cca-76098",
       "drawAt": null,
@@ -602,7 +647,7 @@
       "termsUrl": null,
       "url": "https://flights.cathaypacific.com/en_AU/offers/student-flights.html",
       "source": "cathaypacific",
-      "fetchedAt": "2026-10-30T11:06:54.795Z",
+      "fetchedAt": "2026-10-30T11:23:17.482Z",
       "notes": null,
       "alsoListedAt": [
         "https://flights.cathaypacific.com/en_HK/offers/student-fare.html"
@@ -625,7 +670,7 @@
       "termsUrl": "https://heydoodle.com.au/pages/adventure-giveaway",
       "url": "https://www.ozbargain.com.au/node/978445",
       "source": "ozbargain-competitions",
-      "fetchedAt": "2026-10-30T11:03:46.059Z",
+      "fetchedAt": "2026-10-30T11:20:06.419Z",
       "notes": null,
       "id": "ozb-978445",
       "drawAt": null,
@@ -657,7 +702,7 @@
       "termsUrl": "https://switchnutrition.com.au/",
       "url": "https://www.competitions.com.au/win-15k-travel-voucher-or-10k-cash/75845/",
       "source": "competitions.com.au",
-      "fetchedAt": "2026-10-30T11:04:17.805Z",
+      "fetchedAt": "2026-10-30T11:20:28.630Z",
       "notes": null,
       "id": "cca-75845",
       "drawAt": "2026-12-08T23:59:00+11:00",
@@ -686,7 +731,7 @@
       "termsUrl": "https://saltycrush.com/pages/win",
       "url": "https://www.ozbargain.com.au/node/979850",
       "source": "ozbargain-competitions",
-      "fetchedAt": "2026-10-30T11:03:46.059Z",
+      "fetchedAt": "2026-10-30T11:20:06.418Z",
       "notes": null,
       "id": "ozb-979850",
       "drawAt": null,
@@ -718,7 +763,7 @@
       "termsUrl": "https://cadburymonopoly.com/",
       "url": "https://www.competitions.com.au/win-car-or-travel-prize-london-or-cash-instant-prizes/72927/",
       "source": "competitions.com.au",
-      "fetchedAt": "2026-10-30T11:04:17.805Z",
+      "fetchedAt": "2026-10-30T11:20:28.630Z",
       "notes": null,
       "id": "cca-72927",
       "drawAt": "2027-01-14T23:59:00+11:00",
@@ -747,7 +792,7 @@
       "termsUrl": "https://www.bravectoholidays.com.au/",
       "url": "https://www.competitions.com.au/win-10k-travel-vouchers-50-visa-gift-cards/75783/",
       "source": "competitions.com.au",
-      "fetchedAt": "2026-10-30T11:04:17.805Z",
+      "fetchedAt": "2026-10-30T11:20:28.630Z",
       "notes": null,
       "id": "cca-75783",
       "drawAt": "2027-01-20T23:59:00+11:00",
@@ -776,7 +821,7 @@
       "termsUrl": null,
       "url": "https://www.emirates.com/au/english/special-offers/student-special-fares/",
       "source": "emirates-au",
-      "fetchedAt": "2026-10-30T11:03:36.415Z",
+      "fetchedAt": "2026-10-30T11:19:56.599Z",
       "notes": null,
       "alsoListedAt": [
         "https://www.emirates.com/hk/english/special-offers/student-special-fares/"
@@ -799,7 +844,7 @@
       "termsUrl": null,
       "url": "https://www.emirates.com/au/english/special-offers/earn-more-miles-with-visa/",
       "source": "emirates-au",
-      "fetchedAt": "2026-10-30T11:03:36.415Z",
+      "fetchedAt": "2026-10-30T11:19:56.599Z",
       "notes": null,
       "alsoListedAt": [
         "https://www.emirates.com/hk/english/special-offers/earn-more-miles-with-visa/"
@@ -822,7 +867,7 @@
       "termsUrl": null,
       "url": "https://flights.cathaypacific.com/en_HK/offers/family-premium-pass.html",
       "source": "cathaypacific",
-      "fetchedAt": "2026-10-30T11:06:54.795Z",
+      "fetchedAt": "2026-10-30T11:23:17.482Z",
       "notes": null
     },
     {
@@ -842,7 +887,7 @@
       "termsUrl": null,
       "url": "https://flights.cathaypacific.com/en_AU/offers/oneworld.html",
       "source": "cathaypacific",
-      "fetchedAt": "2026-10-30T11:06:54.795Z",
+      "fetchedAt": "2026-10-30T11:23:17.482Z",
       "notes": null
     },
     {
@@ -862,7 +907,7 @@
       "termsUrl": null,
       "url": "https://flights.cathaypacific.com/en_AU/offers/price-promise.html",
       "source": "cathaypacific",
-      "fetchedAt": "2026-10-30T11:06:54.795Z",
+      "fetchedAt": "2026-10-30T11:23:17.482Z",
       "notes": null
     },
     {
@@ -882,8 +927,32 @@
       "termsUrl": null,
       "url": "https://flights.cathaypacific.com/en_AU/offers/stopover-in-hong-kong-lh-flights.html",
       "source": "cathaypacific",
-      "fetchedAt": "2026-10-30T11:06:54.795Z",
+      "fetchedAt": "2026-10-30T11:23:17.482Z",
       "notes": null
+    },
+    {
+      "type": "event",
+      "title": "ISSRE 2027 — Taipa, Macao SAR China",
+      "destination": "Near Hong Kong (fly via HKG)",
+      "tier": "reachable",
+      "origin": null,
+      "value": null,
+      "valueAud": null,
+      "closesAt": null,
+      "travelWindow": {
+        "from": "2027-10-19T00:00:00+11:00",
+        "to": "2027-10-22T23:59:00+11:00",
+        "text": "Tue 19 - Fri 22 October 2027"
+      },
+      "travelWindowFit": "yes",
+      "eligibility": "Open registration (needs employer approval/funding)",
+      "eligible": true,
+      "entryMethod": null,
+      "termsUrl": null,
+      "url": "https://conf.researchr.org/home/issre-2027",
+      "source": "conf.researchr.org",
+      "fetchedAt": "2026-10-30T11:19:57.159Z",
+      "notes": "Software engineering / programming languages"
     },
     {
       "type": "sale",
@@ -902,7 +971,7 @@
       "termsUrl": "https://www.beatthatflight.com.au/deals/turkish-airlines-thai-airways-business-class-europe-melbourne-perth-sydney-from-4880-return-oct-2026-sep-2027",
       "url": "https://www.ozbargain.com.au/node/979338",
       "source": "ozbargain-uk",
-      "fetchedAt": "2026-10-30T11:03:41.352Z",
+      "fetchedAt": "2026-10-30T11:20:01.484Z",
       "notes": null,
       "alsoListedAt": [
         "https://www.ozbargain.com.au/node/979338"
@@ -925,7 +994,7 @@
       "termsUrl": null,
       "url": "https://www.emirates.com/au/english/special-offers/",
       "source": "emirates-au",
-      "fetchedAt": "2026-10-30T11:03:36.415Z",
+      "fetchedAt": "2026-10-30T11:19:56.599Z",
       "notes": null,
       "alsoListedAt": [
         "https://www.emirates.com/hk/english/special-offers/"
@@ -948,7 +1017,7 @@
       "termsUrl": null,
       "url": "https://www.emirates.com/au/english/skywards/partners/skywards-miles-mall/",
       "source": "emirates-au",
-      "fetchedAt": "2026-10-30T11:03:36.415Z",
+      "fetchedAt": "2026-10-30T11:19:56.599Z",
       "notes": null,
       "alsoListedAt": [
         "https://www.emirates.com/hk/english/skywards/partners/skywards-miles-mall/"
@@ -971,7 +1040,7 @@
       "termsUrl": null,
       "url": "https://www.emirates.com/au/english/special-offers/",
       "source": "emirates-au",
-      "fetchedAt": "2026-10-30T11:03:36.415Z",
+      "fetchedAt": "2026-10-30T11:19:56.599Z",
       "notes": null,
       "alsoListedAt": [
         "https://www.emirates.com/hk/english/special-offers/"
@@ -994,7 +1063,7 @@
       "termsUrl": null,
       "url": "https://www.emirates.com/au/english/special-offers/bonus-skywards-miles-offers/",
       "source": "emirates-au",
-      "fetchedAt": "2026-10-30T11:03:36.415Z",
+      "fetchedAt": "2026-10-30T11:19:56.599Z",
       "notes": null,
       "alsoListedAt": [
         "https://www.emirates.com/hk/english/special-offers/bonus-skywards-miles-offers/"
@@ -1017,7 +1086,7 @@
       "termsUrl": null,
       "url": "https://www.emirates.com/au/english/special-offers/enjoy-25-percent-bonus-skywards-miles/",
       "source": "emirates-au",
-      "fetchedAt": "2026-10-30T11:03:36.415Z",
+      "fetchedAt": "2026-10-30T11:19:56.599Z",
       "notes": null,
       "alsoListedAt": [
         "https://www.emirates.com/hk/english/special-offers/enjoy-25-percent-bonus-skywards-miles/"
@@ -1040,7 +1109,7 @@
       "termsUrl": null,
       "url": "https://www.emirates.com/au/english/skywards/partners/easyjet/",
       "source": "emirates-au",
-      "fetchedAt": "2026-10-30T11:03:36.415Z",
+      "fetchedAt": "2026-10-30T11:19:56.599Z",
       "notes": null,
       "alsoListedAt": [
         "https://www.emirates.com/hk/english/skywards/partners/easyjet/"
@@ -1063,7 +1132,7 @@
       "termsUrl": null,
       "url": "https://www.emirates.com/au/english/skywards/cash-plus-miles/",
       "source": "emirates-au",
-      "fetchedAt": "2026-10-30T11:03:36.415Z",
+      "fetchedAt": "2026-10-30T11:19:56.599Z",
       "notes": null,
       "alsoListedAt": [
         "https://www.emirates.com/hk/english/skywards/cash-plus-miles/"
@@ -1086,7 +1155,7 @@
       "termsUrl": null,
       "url": "https://www.pointhacks.com.au/news/asmallworld-250000-cathay-asia-miles-promotion/",
       "source": "pointhacks",
-      "fetchedAt": "2026-10-30T11:03:36.290Z",
+      "fetchedAt": "2026-10-30T11:19:56.994Z",
       "notes": null
     },
     {
@@ -1106,7 +1175,7 @@
       "termsUrl": null,
       "url": "https://www.pointhacks.com.au/news/qatar-airways-tightens-rules-on-using-avios-my-list/",
       "source": "pointhacks",
-      "fetchedAt": "2026-10-30T11:03:36.290Z",
+      "fetchedAt": "2026-10-30T11:19:56.994Z",
       "notes": null
     }
   ],
@@ -1128,7 +1197,7 @@
       "termsUrl": "https://www.google.com/travel/flights/search?tcfs=ChIKCC9tLzA2eTU3GgZTeWRuZXkS&amp;tfs=CBwQAhojEgoyMDI2LTAyLTA1agcIARIDQk5FcgwIAhIIL20vMDJjZnQaIxIKMjAyNi0wMi0yNGoMCAISCC9tLzAyY2Z0cgcIARIDQk5FQAFIAXABggELCP___________wGYAQGyAQsSCS9tLzAxOTVwZA&amp;tfu=EgYIACACKAEiAA",
       "url": "https://www.ozbargain.com.au/node/910637",
       "source": "ozbargain-ireland",
-      "fetchedAt": "2026-10-30T11:03:41.352Z",
+      "fetchedAt": "2026-10-30T11:20:01.484Z",
       "notes": null,
       "alsoListedAt": [
         "https://www.ozbargain.com.au/node/978242"
@@ -1152,7 +1221,7 @@
       "termsUrl": "https://iwantthatflight.com.au/deal/flights-to-europe-from-796-return-on-etihad-in-october-november-26?ozb=70",
       "url": "https://www.ozbargain.com.au/node/954429",
       "source": "ozbargain-ireland",
-      "fetchedAt": "2026-10-30T11:03:41.352Z",
+      "fetchedAt": "2026-10-30T11:20:01.484Z",
       "notes": null,
       "excludedBecause": "expired"
     },
@@ -1173,7 +1242,7 @@
       "termsUrl": "https://www.beatthatflight.com.au/deals/etihad-business-class-europe-melbourne-sydney-from-3532-apr-jun-2026",
       "url": "https://www.ozbargain.com.au/node/953271",
       "source": "ozbargain-ireland",
-      "fetchedAt": "2026-10-30T11:03:41.352Z",
+      "fetchedAt": "2026-10-30T11:20:01.484Z",
       "notes": null,
       "excludedBecause": "expired"
     },
@@ -1198,7 +1267,7 @@
       "termsUrl": "https://iwantthatflight.com.au/deal/flights-to-switzerland-italy-and-ireland-from-796-return-on-etihad-in-october-november-26?ozb=70",
       "url": "https://www.ozbargain.com.au/node/958537",
       "source": "ozbargain-ireland",
-      "fetchedAt": "2026-10-30T11:03:41.352Z",
+      "fetchedAt": "2026-10-30T11:20:01.484Z",
       "notes": null,
       "excludedBecause": "expired"
     },
@@ -1219,7 +1288,7 @@
       "termsUrl": "https://www.shopback.com.au/cathay-pacific",
       "url": "https://www.ozbargain.com.au/node/968534",
       "source": "ozbargain-hong-kong",
-      "fetchedAt": "2026-10-30T11:03:41.352Z",
+      "fetchedAt": "2026-10-30T11:20:01.484Z",
       "notes": null,
       "excludedBecause": "expired"
     },
@@ -1240,7 +1309,7 @@
       "termsUrl": "https://www.cathaypacific.com/cx/en_HK/offers/80yearstogether.html",
       "url": "https://www.ozbargain.com.au/node/968636",
       "source": "ozbargain-hong-kong",
-      "fetchedAt": "2026-10-30T11:03:41.352Z",
+      "fetchedAt": "2026-10-30T11:20:01.484Z",
       "notes": null,
       "excludedBecause": "expired"
     },
@@ -1261,7 +1330,7 @@
       "termsUrl": "https://www.beatthatflight.com.au/deals/airasia-one-way-per-syd-mel-bali-from-143-singapore-183-kl-194-phuket-202-bangkok-221-tokyo-266-more",
       "url": "https://www.ozbargain.com.au/node/963880",
       "source": "ozbargain-hong-kong",
-      "fetchedAt": "2026-10-30T11:03:41.352Z",
+      "fetchedAt": "2026-10-30T11:20:01.484Z",
       "notes": null,
       "excludedBecause": "expired"
     },
@@ -1282,7 +1351,7 @@
       "termsUrl": "https://www.qantas.com/en-au/book/flight-deals?deal-type=international-red-tail-sale#deals",
       "url": "https://www.ozbargain.com.au/node/969368",
       "source": "ozbargain-hong-kong",
-      "fetchedAt": "2026-10-30T11:03:41.352Z",
+      "fetchedAt": "2026-10-30T11:20:01.484Z",
       "notes": null,
       "excludedBecause": "expired"
     },
@@ -1303,7 +1372,7 @@
       "termsUrl": "https://www.flightfinderau.com/new-york-chicago-dallas-1439-return-flights-cathay-pacific/",
       "url": "https://www.ozbargain.com.au/node/969715",
       "source": "ozbargain-hong-kong",
-      "fetchedAt": "2026-10-30T11:03:41.352Z",
+      "fetchedAt": "2026-10-30T11:20:01.484Z",
       "notes": null,
       "excludedBecause": "expired"
     },
@@ -1328,7 +1397,7 @@
       "termsUrl": "https://www.beatthatflight.com.au/deals/etihad-europe-open-jaw-price-hack-from-1248-melbourne-sydney-oct-2026-mar-2027",
       "url": "https://www.ozbargain.com.au/node/964918",
       "source": "ozbargain-ireland",
-      "fetchedAt": "2026-10-30T11:03:41.352Z",
+      "fetchedAt": "2026-10-30T11:20:01.484Z",
       "notes": null,
       "excludedBecause": "expired"
     },
@@ -1353,7 +1422,7 @@
       "termsUrl": "https://flights.cathaypacific.com/en_AU/offers/stopover-in-hong-kong-lh.html",
       "url": "https://www.ozbargain.com.au/node/969550",
       "source": "ozbargain-hong-kong",
-      "fetchedAt": "2026-10-30T11:03:41.352Z",
+      "fetchedAt": "2026-10-30T11:20:01.484Z",
       "notes": null,
       "excludedBecause": "expired"
     },
@@ -1374,7 +1443,7 @@
       "termsUrl": "https://iwantthatflight.com.au/deal/london-flights-on-5-star-singapore-airlines-from-1455-return-1?ozb=70",
       "url": "https://www.ozbargain.com.au/node/974045",
       "source": "ozbargain-uk",
-      "fetchedAt": "2026-10-30T11:03:41.352Z",
+      "fetchedAt": "2026-10-30T11:20:01.484Z",
       "notes": null,
       "excludedBecause": "expired"
     },
@@ -1395,7 +1464,7 @@
       "termsUrl": "https://iwantthatflight.com.au/deal/london-flights-from-just-1082-return?ozb=70",
       "url": "https://www.ozbargain.com.au/node/974327",
       "source": "ozbargain-uk",
-      "fetchedAt": "2026-10-30T11:03:41.352Z",
+      "fetchedAt": "2026-10-30T11:20:01.484Z",
       "notes": null,
       "excludedBecause": "expired"
     },
@@ -1416,7 +1485,7 @@
       "termsUrl": "https://www.skyscanner.com.au/transport/flights/bne/dub/270209/270308/",
       "url": "https://www.ozbargain.com.au/node/974207",
       "source": "ozbargain-ireland",
-      "fetchedAt": "2026-10-30T11:03:41.352Z",
+      "fetchedAt": "2026-10-30T11:20:01.484Z",
       "notes": null,
       "excludedBecause": "expired"
     },
@@ -1437,7 +1506,7 @@
       "termsUrl": "https://www.cathaypacific.com/cx/en_AU.html",
       "url": "https://www.ozbargain.com.au/node/971621",
       "source": "ozbargain-hong-kong",
-      "fetchedAt": "2026-10-30T11:03:41.352Z",
+      "fetchedAt": "2026-10-30T11:20:01.484Z",
       "notes": null,
       "excludedBecause": "expired"
     },
@@ -1458,7 +1527,7 @@
       "termsUrl": "https://flights.flightfinderau.com/flight.ashx?cl=economy&amp;cur=AUD&amp;dc=HKG&amp;dd=2026-10-25&amp;dealselect=SQ----588&amp;oc=PER&amp;pa=1&amp;po=all&amp;price=Infinity&amp;rd=2026-11-23",
       "url": "https://www.ozbargain.com.au/node/973322",
       "source": "ozbargain-hong-kong",
-      "fetchedAt": "2026-10-30T11:03:41.352Z",
+      "fetchedAt": "2026-10-30T11:20:01.484Z",
       "notes": null,
       "alsoListedAt": [
         "https://www.ozbargain.com.au/node/968166",
@@ -1483,7 +1552,7 @@
       "termsUrl": "https://www.virginaustralia.com/au-en/holidays-40000-bonus-points-october-2026",
       "url": "https://www.ozbargain.com.au/node/978718",
       "source": "ozbargain-travel",
-      "fetchedAt": "2026-10-30T11:03:41.352Z",
+      "fetchedAt": "2026-10-30T11:20:01.484Z",
       "notes": null,
       "excludedBecause": "expired"
     },
@@ -1504,7 +1573,7 @@
       "termsUrl": "https://www.velocityfrequentflyer.com/partners-offers/airlines/virgin-australia-airlines/pick-your-bonus-oct-2026",
       "url": "https://www.ozbargain.com.au/node/978606",
       "source": "ozbargain-travel",
-      "fetchedAt": "2026-10-30T11:03:41.352Z",
+      "fetchedAt": "2026-10-30T11:20:01.484Z",
       "notes": null,
       "excludedBecause": "expired"
     },
@@ -1529,7 +1598,7 @@
       "termsUrl": null,
       "url": "https://flights.cathaypacific.com/en_AU/offers/stopover-in-hong-kong-lh.html",
       "source": "cathaypacific",
-      "fetchedAt": "2026-10-30T11:06:54.795Z",
+      "fetchedAt": "2026-10-30T11:23:17.482Z",
       "notes": null,
       "excludedBecause": "travel window does not cover Sep-Oct 2027"
     },
@@ -1554,7 +1623,7 @@
       "termsUrl": null,
       "url": "https://flights.cathaypacific.com/en_AU/offers/premium-economy-plus-offer.html",
       "source": "cathaypacific",
-      "fetchedAt": "2026-10-30T11:06:54.795Z",
+      "fetchedAt": "2026-10-30T11:23:17.482Z",
       "notes": null,
       "excludedBecause": "travel window does not cover Sep-Oct 2027"
     },
@@ -1579,7 +1648,7 @@
       "termsUrl": null,
       "url": "https://flights.cathaypacific.com/en_HK/offers/domestic-helper-flight-offer.html",
       "source": "cathaypacific",
-      "fetchedAt": "2026-10-30T11:06:54.795Z",
+      "fetchedAt": "2026-10-30T11:23:17.482Z",
       "notes": null,
       "excludedBecause": "not open to (general) AU/HK residents"
     },
@@ -1604,7 +1673,7 @@
       "termsUrl": "https://skyspy.deals/?date=2027-01-21&amp;from=MEL&amp;to=CDG",
       "url": "https://www.ozbargain.com.au/node/980712",
       "source": "ozbargain-uk",
-      "fetchedAt": "2026-10-30T11:03:41.352Z",
+      "fetchedAt": "2026-10-30T11:20:01.484Z",
       "notes": null,
       "alsoListedAt": [
         "https://www.ozbargain.com.au/node/975026",
@@ -1613,6 +1682,59 @@
         "https://www.ozbargain.com.au/node/976028"
       ],
       "excludedBecause": "travel window does not cover Sep-Oct 2027"
+    },
+    {
+      "type": "event",
+      "title": "ACIRS 2027 : 2027 12th Asia-Pacific Conference on Intelligent Robot Systems (ACIRS 2027) — Hong kong, China",
+      "destination": "Hong Kong",
+      "tier": "direct",
+      "origin": null,
+      "value": null,
+      "valueAud": null,
+      "closesAt": null,
+      "travelWindow": {
+        "from": "2027-07-23T00:00:00+10:00",
+        "to": "2027-07-25T23:59:00+10:00",
+        "text": "Jul 23, 2027 - Jul 25, 2027"
+      },
+      "travelWindowFit": "no",
+      "eligibility": "Open registration (needs employer approval/funding)",
+      "eligible": true,
+      "entryMethod": null,
+      "termsUrl": null,
+      "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=203777&copyownerid=13881",
+      "source": "wikicfp",
+      "fetchedAt": "2026-10-30T11:20:24.842Z",
+      "notes": "Call for papers (robotics); speaking/presenting is the usual way to get a conference funded",
+      "alsoListedAt": [
+        "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=203778&copyownerid=13881"
+      ],
+      "excludedBecause": "event is outside Sep-Oct 2027"
+    },
+    {
+      "type": "event",
+      "title": "APLAS & ATVA 2026 — Hong Kong SAR China",
+      "destination": "Hong Kong",
+      "tier": "direct",
+      "origin": null,
+      "value": null,
+      "valueAud": null,
+      "closesAt": null,
+      "travelWindow": {
+        "from": "2026-12-01T00:00:00+11:00",
+        "to": "2026-12-04T23:59:00+11:00",
+        "text": "Tue 1 - Fri 4 December 2026"
+      },
+      "travelWindowFit": "no",
+      "eligibility": "Open registration (needs employer approval/funding)",
+      "eligible": true,
+      "entryMethod": null,
+      "termsUrl": null,
+      "url": "https://conf.researchr.org/home/aplas-atva-2026",
+      "source": "conf.researchr.org",
+      "fetchedAt": "2026-10-30T11:19:57.159Z",
+      "notes": "Software engineering / programming languages",
+      "excludedBecause": "event is outside Sep-Oct 2027"
     },
     {
       "type": "sale",
@@ -1635,7 +1757,7 @@
       "termsUrl": null,
       "url": "https://flights.cathaypacific.com/en_AU/offers/east-hotel.html",
       "source": "cathaypacific",
-      "fetchedAt": "2026-10-30T11:06:54.795Z",
+      "fetchedAt": "2026-10-30T11:23:17.482Z",
       "notes": null,
       "excludedBecause": "travel window does not cover Sep-Oct 2027"
     },
@@ -1660,7 +1782,7 @@
       "termsUrl": null,
       "url": "https://flights.cathaypacific.com/en_AU/offers/adelaide-seasonal-flights.html",
       "source": "cathaypacific",
-      "fetchedAt": "2026-10-30T11:06:54.795Z",
+      "fetchedAt": "2026-10-30T11:23:17.482Z",
       "notes": null,
       "excludedBecause": "travel window does not cover Sep-Oct 2027"
     },
@@ -1685,9 +1807,59 @@
       "termsUrl": null,
       "url": "https://flights.cathaypacific.com/en_HK/offers/weekly-discovery.html",
       "source": "cathaypacific",
-      "fetchedAt": "2026-10-30T11:06:54.795Z",
+      "fetchedAt": "2026-10-30T11:23:17.482Z",
       "notes": null,
       "excludedBecause": "travel window does not cover Sep-Oct 2027"
+    },
+    {
+      "type": "event",
+      "title": "Consensus Hong Kong 2027 — Hong Kong, Hong Kong",
+      "destination": "Hong Kong",
+      "tier": "direct",
+      "origin": null,
+      "value": null,
+      "valueAud": null,
+      "closesAt": null,
+      "travelWindow": {
+        "from": "2027-02-01T00:00:00+11:00",
+        "to": "2027-02-01T23:59:00+11:00",
+        "text": "February 1, 2027"
+      },
+      "travelWindowFit": "no",
+      "eligibility": "Open registration (needs employer approval/funding)",
+      "eligible": true,
+      "entryMethod": null,
+      "termsUrl": null,
+      "url": "https://dev.events/conferences/consensus-hong-kong-2027-otpmmvpp",
+      "source": "dev.events",
+      "fetchedAt": "2026-10-30T11:19:55.786Z",
+      "notes": "Topics: Artificial Intelligence (AI), conference",
+      "excludedBecause": "event is outside Sep-Oct 2027"
+    },
+    {
+      "type": "event",
+      "title": "AIIM 2026 : 2026 6th International Symposium on Artificial Intelligence and Intelligent Manufacturing — Guangzhou, China",
+      "destination": "Near Hong Kong (fly via HKG)",
+      "tier": "reachable",
+      "origin": null,
+      "value": null,
+      "valueAud": null,
+      "closesAt": null,
+      "travelWindow": {
+        "from": "2026-11-27T00:00:00+11:00",
+        "to": "2026-11-29T23:59:00+11:00",
+        "text": "Nov 27, 2026 - Nov 29, 2026"
+      },
+      "travelWindowFit": "no",
+      "eligibility": "Open registration (needs employer approval/funding)",
+      "eligible": true,
+      "entryMethod": null,
+      "termsUrl": null,
+      "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=203424&copyownerid=163220",
+      "source": "wikicfp",
+      "fetchedAt": "2026-10-30T11:20:24.842Z",
+      "notes": "Call for papers (automation); speaking/presenting is the usual way to get a conference funded",
+      "excludedBecause": "event is outside Sep-Oct 2027"
     },
     {
       "type": "sale",
@@ -1710,9 +1882,59 @@
       "termsUrl": null,
       "url": "https://flights.cathaypacific.com/en_AU/offers/skytrax-2026-offer.html",
       "source": "cathaypacific",
-      "fetchedAt": "2026-10-30T11:06:54.795Z",
+      "fetchedAt": "2026-10-30T11:23:17.482Z",
       "notes": "Sale excludes Hong Kong",
       "excludedBecause": "travel window does not cover Sep-Oct 2027"
+    },
+    {
+      "type": "event",
+      "title": "CISSE 2026 : IEEE 2026 8th International Conference on Communications, Information System and Software Engineering — Guangzhou, China",
+      "destination": "Near Hong Kong (fly via HKG)",
+      "tier": "reachable",
+      "origin": null,
+      "value": null,
+      "valueAud": null,
+      "closesAt": null,
+      "travelWindow": {
+        "from": "2026-12-18T00:00:00+11:00",
+        "to": "2026-12-20T23:59:00+11:00",
+        "text": "Dec 18, 2026 - Dec 20, 2026"
+      },
+      "travelWindowFit": "no",
+      "eligibility": "Open registration (needs employer approval/funding)",
+      "eligible": true,
+      "entryMethod": null,
+      "termsUrl": null,
+      "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=203864&copyownerid=182680",
+      "source": "wikicfp",
+      "fetchedAt": "2026-10-30T11:20:24.842Z",
+      "notes": "Call for papers (software engineering); speaking/presenting is the usual way to get a conference funded",
+      "excludedBecause": "event is outside Sep-Oct 2027"
+    },
+    {
+      "type": "event",
+      "title": "Computing 2027 : 15th Computing Conference 2027 — Clayton Hotel Chiswick, London, United K",
+      "destination": "UK / Ireland (Belfast reachable)",
+      "tier": "reachable",
+      "origin": null,
+      "value": null,
+      "valueAud": null,
+      "closesAt": null,
+      "travelWindow": {
+        "from": "2027-07-08T00:00:00+10:00",
+        "to": "2027-07-09T23:59:00+10:00",
+        "text": "Jul 8, 2027 - Jul 9, 2027"
+      },
+      "travelWindowFit": "no",
+      "eligibility": "Open registration (needs employer approval/funding)",
+      "eligible": true,
+      "entryMethod": null,
+      "termsUrl": null,
+      "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=203033&copyownerid=44941",
+      "source": "wikicfp",
+      "fetchedAt": "2026-10-30T11:20:24.842Z",
+      "notes": "Call for papers (computer vision); speaking/presenting is the usual way to get a conference funded",
+      "excludedBecause": "event is outside Sep-Oct 2027"
     },
     {
       "type": "sale",
@@ -1735,12 +1957,212 @@
       "termsUrl": "https://www.beatthatflight.com.au/deals/etihad-europe-open-jaw-melbourne-from-1346-sydney-from-1350-oct-2026-jun-2027",
       "url": "https://www.ozbargain.com.au/node/975223",
       "source": "ozbargain-uk",
-      "fetchedAt": "2026-10-30T11:03:41.352Z",
+      "fetchedAt": "2026-10-30T11:20:01.484Z",
       "notes": null,
       "alsoListedAt": [
         "https://www.ozbargain.com.au/node/975223"
       ],
       "excludedBecause": "travel window does not cover Sep-Oct 2027"
+    },
+    {
+      "type": "event",
+      "title": "FSE 2027 — Shenzhen, China",
+      "destination": "Near Hong Kong (fly via HKG)",
+      "tier": "reachable",
+      "origin": null,
+      "value": null,
+      "valueAud": null,
+      "closesAt": null,
+      "travelWindow": {
+        "from": "2027-07-12T00:00:00+10:00",
+        "to": "2027-07-16T23:59:00+10:00",
+        "text": "Mon 12 - Fri 16 July 2027"
+      },
+      "travelWindowFit": "no",
+      "eligibility": "Open registration (needs employer approval/funding)",
+      "eligible": true,
+      "entryMethod": null,
+      "termsUrl": null,
+      "url": "https://conf.researchr.org/home/fse-2027",
+      "source": "conf.researchr.org",
+      "fetchedAt": "2026-10-30T11:19:57.159Z",
+      "notes": "Software engineering / programming languages",
+      "excludedBecause": "event is outside Sep-Oct 2027"
+    },
+    {
+      "type": "event",
+      "title": "ICISE-IE 2026 : IEEE 2026 7th International Conference on Information Science and Education — Guangzhou, China",
+      "destination": "Near Hong Kong (fly via HKG)",
+      "tier": "reachable",
+      "origin": null,
+      "value": null,
+      "valueAud": null,
+      "closesAt": null,
+      "travelWindow": {
+        "from": "2026-12-18T00:00:00+11:00",
+        "to": "2026-12-20T23:59:00+11:00",
+        "text": "Dec 18, 2026 - Dec 20, 2026"
+      },
+      "travelWindowFit": "no",
+      "eligibility": "Open registration (needs employer approval/funding)",
+      "eligible": true,
+      "entryMethod": null,
+      "termsUrl": null,
+      "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=203887&copyownerid=182680",
+      "source": "wikicfp",
+      "fetchedAt": "2026-10-30T11:20:24.842Z",
+      "notes": "Call for papers (artificial intelligence); speaking/presenting is the usual way to get a conference funded",
+      "excludedBecause": "event is outside Sep-Oct 2027"
+    },
+    {
+      "type": "event",
+      "title": "ICoACE 2026 : IEEE 2026 5th International Conference on Aerospace and Control Engineering — Shenzhen, China",
+      "destination": "Near Hong Kong (fly via HKG)",
+      "tier": "reachable",
+      "origin": null,
+      "value": null,
+      "valueAud": null,
+      "closesAt": null,
+      "travelWindow": {
+        "from": "2026-12-11T00:00:00+11:00",
+        "to": "2026-12-13T23:59:00+11:00",
+        "text": "Dec 11, 2026 - Dec 13, 2026"
+      },
+      "travelWindowFit": "no",
+      "eligibility": "Open registration (needs employer approval/funding)",
+      "eligible": true,
+      "entryMethod": null,
+      "termsUrl": null,
+      "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=203755&copyownerid=182680",
+      "source": "wikicfp",
+      "fetchedAt": "2026-10-30T11:20:24.842Z",
+      "notes": "Call for papers (robotics); speaking/presenting is the usual way to get a conference funded",
+      "excludedBecause": "event is outside Sep-Oct 2027"
+    },
+    {
+      "type": "event",
+      "title": "ICSE 2027 — Dublin, Ireland",
+      "destination": "UK / Ireland (Belfast reachable)",
+      "tier": "reachable",
+      "origin": null,
+      "value": null,
+      "valueAud": null,
+      "closesAt": null,
+      "travelWindow": {
+        "from": "2027-04-25T00:00:00+10:00",
+        "to": "2027-05-01T23:59:00+10:00",
+        "text": "Sun 25 April - Sat 1 May 2027"
+      },
+      "travelWindowFit": "no",
+      "eligibility": "Open registration (needs employer approval/funding)",
+      "eligible": true,
+      "entryMethod": null,
+      "termsUrl": null,
+      "url": "https://conf.researchr.org/home/icse-2027",
+      "source": "conf.researchr.org",
+      "fetchedAt": "2026-10-30T11:19:57.159Z",
+      "notes": "Software engineering / programming languages",
+      "excludedBecause": "event is outside Sep-Oct 2027"
+    },
+    {
+      "type": "event",
+      "title": "IEEE-RICAI 2026 : 2026 IEEE 8th International Conference on Robotics, Intelligent Control and Artificial Intelligence — Shenzhen, China",
+      "destination": "Near Hong Kong (fly via HKG)",
+      "tier": "reachable",
+      "origin": null,
+      "value": null,
+      "valueAud": null,
+      "closesAt": null,
+      "travelWindow": {
+        "from": "2026-11-20T00:00:00+11:00",
+        "to": "2026-11-22T23:59:00+11:00",
+        "text": "Nov 20, 2026 - Nov 22, 2026"
+      },
+      "travelWindowFit": "no",
+      "eligibility": "Open registration (needs employer approval/funding)",
+      "eligible": true,
+      "entryMethod": null,
+      "termsUrl": null,
+      "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=203297&copyownerid=182680",
+      "source": "wikicfp",
+      "fetchedAt": "2026-10-30T11:20:24.842Z",
+      "notes": "Call for papers (robotics); speaking/presenting is the usual way to get a conference funded",
+      "excludedBecause": "event is outside Sep-Oct 2027"
+    },
+    {
+      "type": "event",
+      "title": "LLMday London 2026 Q4 — London, United Kingdom",
+      "destination": "UK / Ireland (Belfast reachable)",
+      "tier": "reachable",
+      "origin": null,
+      "value": null,
+      "valueAud": null,
+      "closesAt": null,
+      "travelWindow": {
+        "from": "2026-11-26T00:00:00+11:00",
+        "to": "2026-11-26T23:59:00+11:00",
+        "text": "November 26, 2026"
+      },
+      "travelWindowFit": "no",
+      "eligibility": "Open registration (needs employer approval/funding)",
+      "eligible": true,
+      "entryMethod": null,
+      "termsUrl": null,
+      "url": "https://dev.events/conferences/ll-mday-london-2026-q4-09qh-7ld",
+      "source": "dev.events",
+      "fetchedAt": "2026-10-30T11:19:55.787Z",
+      "notes": "Topics: Large Language Model (LLM), conference",
+      "excludedBecause": "event is outside Sep-Oct 2027"
+    },
+    {
+      "type": "event",
+      "title": "MEA 2026 : 2026 8th International Conference on Mechanical Engineering and Automation — Guangzhou, China",
+      "destination": "Near Hong Kong (fly via HKG)",
+      "tier": "reachable",
+      "origin": null,
+      "value": null,
+      "valueAud": null,
+      "closesAt": null,
+      "travelWindow": {
+        "from": "2026-12-18T00:00:00+11:00",
+        "to": "2026-12-20T23:59:00+11:00",
+        "text": "Dec 18, 2026 - Dec 20, 2026"
+      },
+      "travelWindowFit": "no",
+      "eligibility": "Open registration (needs employer approval/funding)",
+      "eligible": true,
+      "entryMethod": null,
+      "termsUrl": null,
+      "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=203640&copyownerid=163220",
+      "source": "wikicfp",
+      "fetchedAt": "2026-10-30T11:20:24.842Z",
+      "notes": "Call for papers (automation); speaking/presenting is the usual way to get a conference funded",
+      "excludedBecause": "event is outside Sep-Oct 2027"
+    },
+    {
+      "type": "event",
+      "title": "NEAR x Ondo Mixer @ DASLondon — London, United Kingdom",
+      "destination": "UK / Ireland (Belfast reachable)",
+      "tier": "reachable",
+      "origin": null,
+      "value": null,
+      "valueAud": null,
+      "closesAt": null,
+      "travelWindow": {
+        "from": "2026-11-11T00:00:00+11:00",
+        "to": "2026-11-11T23:59:00+11:00",
+        "text": "November 11, 2026"
+      },
+      "travelWindowFit": "no",
+      "eligibility": "Open registration (needs employer approval/funding)",
+      "eligible": true,
+      "entryMethod": null,
+      "termsUrl": null,
+      "url": "https://dev.events/conferences/near-x-ondo-mixer-das-london-bud6o78j",
+      "source": "dev.events",
+      "fetchedAt": "2026-10-30T11:19:55.786Z",
+      "notes": "Topics: Fintech, conference",
+      "excludedBecause": "event is outside Sep-Oct 2027"
     }
   ],
   "benchmarks": [
@@ -1761,7 +2183,7 @@
       "termsUrl": "https://flights.flightfinderau.com/flight.ashx?cl=economy&amp;cur=AUD&amp;dc=HKG&amp;dd=2026-10-25&amp;dealselect=SQ----588&amp;oc=PER&amp;pa=1&amp;po=all&amp;price=Infinity&amp;rd=2026-11-23",
       "url": "https://www.ozbargain.com.au/node/973322",
       "source": "ozbargain-hong-kong",
-      "fetchedAt": "2026-10-30T11:03:41.352Z",
+      "fetchedAt": "2026-10-30T11:20:01.484Z",
       "notes": null,
       "alsoListedAt": [
         "https://www.ozbargain.com.au/node/968166",
@@ -1786,7 +2208,7 @@
       "termsUrl": "https://www.skyscanner.com.au/transport/flights/bne/dub/270209/270308/",
       "url": "https://www.ozbargain.com.au/node/974207",
       "source": "ozbargain-ireland",
-      "fetchedAt": "2026-10-30T11:03:41.352Z",
+      "fetchedAt": "2026-10-30T11:20:01.484Z",
       "notes": null,
       "excludedBecause": "expired"
     },
@@ -1807,7 +2229,7 @@
       "termsUrl": "https://iwantthatflight.com.au/deal/london-flights-from-just-1082-return?ozb=70",
       "url": "https://www.ozbargain.com.au/node/974327",
       "source": "ozbargain-uk",
-      "fetchedAt": "2026-10-30T11:03:41.352Z",
+      "fetchedAt": "2026-10-30T11:20:01.484Z",
       "notes": null,
       "excludedBecause": "expired"
     },
@@ -1828,7 +2250,7 @@
       "termsUrl": "https://iwantthatflight.com.au/deal/london-flights-on-5-star-singapore-airlines-from-1455-return-1?ozb=70",
       "url": "https://www.ozbargain.com.au/node/974045",
       "source": "ozbargain-uk",
-      "fetchedAt": "2026-10-30T11:03:41.352Z",
+      "fetchedAt": "2026-10-30T11:20:01.484Z",
       "notes": null,
       "excludedBecause": "expired"
     },
@@ -1849,7 +2271,7 @@
       "termsUrl": "https://www.qantas.com/en-au/book/flight-deals?deal-type=international-red-tail-sale#deals",
       "url": "https://www.ozbargain.com.au/node/969368",
       "source": "ozbargain-hong-kong",
-      "fetchedAt": "2026-10-30T11:03:41.352Z",
+      "fetchedAt": "2026-10-30T11:20:01.484Z",
       "notes": null,
       "excludedBecause": "expired"
     },
@@ -1870,7 +2292,7 @@
       "termsUrl": "https://www.beatthatflight.com.au/deals/airasia-one-way-per-syd-mel-bali-from-143-singapore-183-kl-194-phuket-202-bangkok-221-tokyo-266-more",
       "url": "https://www.ozbargain.com.au/node/963880",
       "source": "ozbargain-hong-kong",
-      "fetchedAt": "2026-10-30T11:03:41.352Z",
+      "fetchedAt": "2026-10-30T11:20:01.484Z",
       "notes": null,
       "excludedBecause": "expired"
     },
@@ -1895,7 +2317,7 @@
       "termsUrl": "https://iwantthatflight.com.au/deal/flights-to-switzerland-italy-and-ireland-from-796-return-on-etihad-in-october-november-26?ozb=70",
       "url": "https://www.ozbargain.com.au/node/958537",
       "source": "ozbargain-ireland",
-      "fetchedAt": "2026-10-30T11:03:41.352Z",
+      "fetchedAt": "2026-10-30T11:20:01.484Z",
       "notes": null,
       "excludedBecause": "expired"
     },
@@ -1916,7 +2338,7 @@
       "termsUrl": "https://www.beatthatflight.com.au/deals/etihad-business-class-europe-melbourne-sydney-from-3532-apr-jun-2026",
       "url": "https://www.ozbargain.com.au/node/953271",
       "source": "ozbargain-ireland",
-      "fetchedAt": "2026-10-30T11:03:41.352Z",
+      "fetchedAt": "2026-10-30T11:20:01.484Z",
       "notes": null,
       "excludedBecause": "expired"
     },
@@ -1937,7 +2359,7 @@
       "termsUrl": "https://iwantthatflight.com.au/deal/flights-to-europe-from-796-return-on-etihad-in-october-november-26?ozb=70",
       "url": "https://www.ozbargain.com.au/node/954429",
       "source": "ozbargain-ireland",
-      "fetchedAt": "2026-10-30T11:03:41.352Z",
+      "fetchedAt": "2026-10-30T11:20:01.484Z",
       "notes": null,
       "excludedBecause": "expired"
     },
@@ -1958,7 +2380,7 @@
       "termsUrl": "https://www.google.com/travel/flights/search?tcfs=ChIKCC9tLzA2eTU3GgZTeWRuZXkS&amp;tfs=CBwQAhojEgoyMDI2LTAyLTA1agcIARIDQk5FcgwIAhIIL20vMDJjZnQaIxIKMjAyNi0wMi0yNGoMCAISCC9tLzAyY2Z0cgcIARIDQk5FQAFIAXABggELCP___________wGYAQGyAQsSCS9tLzAxOTVwZA&amp;tfu=EgYIACACKAEiAA",
       "url": "https://www.ozbargain.com.au/node/910637",
       "source": "ozbargain-ireland",
-      "fetchedAt": "2026-10-30T11:03:41.352Z",
+      "fetchedAt": "2026-10-30T11:20:01.484Z",
       "notes": null,
       "alsoListedAt": [
         "https://www.ozbargain.com.au/node/978242"
@@ -1966,5 +2388,5 @@
       "excludedBecause": "expired"
     }
   ],
-  "irrelevantCount": 221
+  "irrelevantCount": 412
 }

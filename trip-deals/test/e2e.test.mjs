@@ -36,7 +36,7 @@ test('e2e: live run collects, filters, dedupes and sorts open items', { timeout:
   assert.ok(data.results.length >= 3, `expected >=3 open items, got ${data.results.length}`);
   for (const r of data.results) {
     for (const f of FIELDS) assert.ok(f in r, `${r.title}: missing ${f}`);
-    assert.ok(['competition', 'sale', 'points'].includes(r.type), `bad type ${r.type}`);
+    assert.ok(['competition', 'sale', 'points', 'event'].includes(r.type), `bad type ${r.type}`);
     assert.ok(r.title && r.destination && r.tier, `incomplete row ${JSON.stringify(r)}`);
     assert.match(r.url, /^https:\/\//);
     assert.ok(!r.closesAt || Date.parse(r.closesAt) >= now, `expired item kept: ${r.title} ${r.closesAt}`);

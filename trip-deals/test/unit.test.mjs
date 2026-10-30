@@ -376,3 +376,62 @@ test('renderCompetitions groups by priority and renderCsv escapes', () => {
   assert.equal(csv.length, 4);
   assert.match(csv[2], /"Win a \$500 Flight Voucher, ""bonus"""/);
 });
+
+// ---------------------------------------------------------------------------- conferences & events
+import { parseDateRange, eventRelevance, robotsCrawlDelay } from '../lib.mjs';
+import { parseResearchr, parseDevEvents, parseWikiCfp } from '../sources.mjs';
+
+test('parseDateRange handles the event listing formats', () => {
+  const r = (s) => { const x = parseDateRange(s, NOW); return x && [x.from.slice(0, 10), x.to.slice(0, 10)]; };
+  assert.deepEqual(r('Tue 19 - Fri 22 October 2027'), ['2027-10-19', '2027-10-22']);
+  assert.deepEqual(r('Sun 26 September - Fri 1 October 2027'), ['2027-09-26', '2027-10-01']);
+  assert.deepEqual(r('Dec 11, 2026 - Dec 13, 2026'), ['2026-12-11', '2026-12-13']);
+  assert.deepEqual(r('December 10, 2026'), ['2026-12-10', '2026-12-10']);
+  assert.deepEqual(r('Mon 28 Dec - Sat 2 January 2027'), ['2026-12-28', '2027-01-02']);
+  assert.equal(parseDateRange('TBA', NOW), null);
+});
+
+test('eventRelevance maps locations to trip options', () => {
+  assert.equal(eventRelevance('Belfast, United Kingdom').tier, 'direct');
+  assert.equal(eventRelevance('Hong Kong SAR China').destination, 'Hong Kong');
+  assert.equal(eventRelevance('Taipa, Macao SAR China').destination, 'Near Hong Kong (fly via HKG)');
+  assert.equal(eventRelevance('Dublin, Ireland').tier, 'reachable');
+  assert.equal(eventRelevance('Prague, Czechia'), null);
+  assert.equal(eventRelevance('Ukulele Hall'), null);
+});
+
+test('robotsCrawlDelay reads the * group', () => {
+  assert.equal(robotsCrawlDelay('User-agent: Gigabot\nDisallow: /\nUser-agent: *\nDisallow:\nCrawl-delay: 5\n'), 5);
+  assert.equal(robotsCrawlDelay('User-agent: *\nDisallow: /x\n'), null);
+});
+
+test('parseResearchr reads carousel captions and skips dates-TBA placeholders', () => {
+  const html = `<a href="https://conf.researchr.org/home/issre-2027" class="navigate"><div class="fill"></div><div class="carousel-caption"><h1>ISSRE 2027</h1><h3>Taipa, Macao SAR China</h3><h5>Tue 19 - Fri 22 October 2027</h5></div></a>
+    <a href="https://conf.researchr.org/home/icsa-2027" class="navigate"><div class="carousel-caption"><h1>ICSA 2027</h1><h5>Fri 31 Dec 2027</h5></div></a>`;
+  const out = parseResearchr(html, NOW);
+  assert.equal(out.length, 1);
+  assert.equal(out[0].title, 'ISSRE 2027 — Taipa, Macao SAR China');
+  assert.equal(out[0].type, 'event');
+  assert.equal(out[0].travelWindow.from.slice(0, 10), '2027-10-19');
+  assert.equal(normaliseItem(out[0], { now: NOW }).travelWindowFit, 'yes');
+});
+
+test('parseDevEvents and parseWikiCfp extract location and dates', () => {
+  const dev = `<item><title><![CDATA[Consensus Hong Kong 2027]]></title><link>https://dev.events/conferences/c</link>
+    <description><![CDATA[Consensus Hong Kong 2027 is happening on February 1, 2027 in Hong Kong, Hong Kong, Asia. More information: https://dev.events/conferences/c]]></description><category>AI</category></item>`;
+  const [d] = parseDevEvents(dev, NOW);
+  assert.equal(d.relevance.destination, 'Hong Kong');
+  assert.equal(d.travelWindow.from.slice(0, 10), '2027-02-01');
+  const cfp = `<item><title>ACIRS 2027 : Asia-Pacific Conference on Intelligent Robot Systems</title><link>http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=1&amp;copyownerid=2</link>
+    <description>Asia-Pacific Conference on Intelligent Robot Systems [Hong Kong, China] [Jul 23, 2027 - Jul 25, 2027]</description></item>`;
+  const [w] = parseWikiCfp(cfp, NOW, 'robotics');
+  assert.equal(w.relevance.tier, 'direct');
+  assert.equal(w.travelWindow.to.slice(0, 10), '2027-07-25');
+  assert.equal(w.url, 'http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=1&copyownerid=2');
+  assert.equal(applyFilters([normaliseItem(w, { now: NOW })], NOW).excluded[0].excludedBecause, 'event is outside Sep-Oct 2027');
+});
+
+test('dedupe merges a cross-listed event (same start date, similar name)', () => {
+  const mk = (t, url) => normaliseItem({ type: 'event', title: t, url, source: 'wikicfp', travelWindow: { from: '2027-07-23T00:00:00+10:00', to: '2027-07-25T23:59:00+10:00' }, relevance: { tier: 'direct', destination: 'Hong Kong' } }, { now: NOW });
+  assert.equal(dedupe([mk('ACIRS 2027 : 12th Asia-Pacific Conference on Intelligent Robot Systems', 'u1'), mk('ACIRS--EI 2027 : 12th Asia-Pacific Conference on Intelligent Robot Systems', 'u2')]).length, 1);
+});
