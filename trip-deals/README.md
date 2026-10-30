@@ -32,6 +32,26 @@ Exit codes: 0 = data collected, 1 = every source failed, 2 = bad arguments.
 
 [ACTION-PLAN.md](ACTION-PLAN.md) is the hand-written recommendation based on a run's output.
 
+## Tracking entries
+
+Entries are recorded in **`entries.json`** (committed, so the history is kept and shared through git). `ENTRIES.md` is generated from it.
+Each competition has a stable id (`ozb-979072`, `cca-76098`, `ac-28370`), shown in the second column of `COMPETITIONS.md`.
+
+```
+node track.mjs add ozb-979072 --by Rob --email comps@… --answer "our 25 words"   # after entering; run again for daily entries
+node track.mjs add cca-75946 --by Rob --ref "1Cover policy 12345"                # purchase comps: keep the receipt/policy ref
+node track.mjs add manual --title "Radio comp" --url https://… --closes 2026-11-20 # a competition the finder didn't list
+npm run due                                   # results to check, prizes to claim, A/B comps closing in 3 days not yet entered
+node track.mjs status ozb-979072 not-won      # or: won --claim-by 2026-12-01 --note "email from promoter"
+node track.mjs list                           # every entry and its phase
+npm start                                     # re-ticks COMPETITIONS.md and rewrites ENTRIES.md
+```
+
+The tracker works out when to look for the result. It uses `--check-by` if given, otherwise 7 days after the draw date (parsed from the T&Cs where stated, or set with `--draw`), otherwise 14 days after closing. After that date, `due` flags the entry **CHECK RESULT**. A win stays flagged until it's marked `claimed`, and from 7 days before the `--claim-by` deadline it's flagged as urgent.
+When the competition closes, the ledger still has the title, links and dates, because they were copied in at entry time.
+
+**Don't put passwords, phone numbers or home addresses in the ledger.** It's committed to git. Use an email alias and a receipt or policy reference instead.
+
 | Source | Method | Gives |
 |---|---|---|
 | OzBargain competitions | HTML list (`/competition`) | comps with open-to, prize pool, closing date, entry link |

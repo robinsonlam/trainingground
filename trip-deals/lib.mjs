@@ -259,6 +259,22 @@ export function travelValueAud(title) {
   return best || null;
 }
 
+// Stable id for a competition from its listing URL: ozb-979072, cca-76098, ac-28370 (else a slug of the URL).
+export function compId(url) {
+  const u = String(url ?? '');
+  let m = u.match(/ozbargain\.com\.au\/node\/(\d+)/); if (m) return `ozb-${m[1]}`;
+  m = u.match(/competitions\.com\.au\/[^/]+\/(\d+)\/?$/); if (m) return `cca-${m[1]}`;
+  m = u.match(/aussiecomps\.com\/index\.php\?id=(\d+)/); if (m) return `ac-${m[1]}`;
+  return u.replace(/^https?:\/\/(www\.)?/, '').replace(/[^a-z0-9]+/gi, '-').replace(/^-|-$/g, '').slice(0, 60).toLowerCase();
+}
+
+// "Winners will be drawn at random on Monday 9 November 2026" -> ISO date (end of that day), else null.
+export function parseDrawDate(text, now = new Date()) {
+  const re = new RegExp(`(?:drawn?|draw (?:will )?(?:take place|be (?:held|conducted))|winners? (?:will be )?(?:selected|judged|announced|chosen))[^.]{0,60}?\\bon\\s+(?:[A-Z][a-z]+day,?\\s+)?(${DATE_TXT})`, 'i');
+  const m = String(text ?? '').match(re);
+  return m ? parseDate(m[1], now) : null;
+}
+
 // A = enter now, B = quick entry if you have time, C = only if you'd buy the product anyway, D = low value.
 export function prioritise(it) {
   if (it.type !== 'competition') return null;
@@ -295,6 +311,8 @@ export function normaliseItem(raw, { now = new Date(), fetchedAt = now.toISOStri
   if (item.type === 'competition') {
     const c = classifyEntry(`${raw.entryKindText ?? ''} ${item.entryMethod ?? ''}`);
     Object.assign(item, {
+      id: compId(item.url),
+      drawAt: raw.drawAt ?? parseDrawDate(raw.entryKindText, now),
       entryKind: c.entryKind,
       purchaseRequired: raw.purchaseRequired ?? c.purchaseRequired,
       effort: c.effort,

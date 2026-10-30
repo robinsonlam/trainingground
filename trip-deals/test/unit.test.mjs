@@ -368,7 +368,9 @@ test('renderCompetitions groups by priority and renderCsv escapes', () => {
     r({ title: 'Win a Trip to London', entryMethod: 'must purchase a product', url: 'https://x/c' }),
     r({ title: 'Win a $5,000 Travel Voucher', url: 'https://x/a', ozbEntrants: 12 }),
   ] };
-  const md = renderCompetitions(data);
+  const md = renderCompetitions(data, { entries: [{ id: data.results[2].id, entries: [{ at: '2026-10-30T10:00:00+11:00', by: 'Rob' }] }] });
+  assert.match(md, /☑ 2026-10-30 \(Rob\)/, 'entered competitions are ticked');
+  assert.match(md, /1 of 3 entered/);
   assert.ok(md.indexOf('https://x/a') < md.indexOf('https://x/b') && md.indexOf('https://x/b') < md.indexOf('https://x/c'), 'A before B before C');
   const csv = renderCsv(data).trim().split('\n');
   assert.equal(csv.length, 4);

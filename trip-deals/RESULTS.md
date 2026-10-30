@@ -123,8 +123,8 @@ No source used here publishes live SYD→BFS, SYD→HKG or HKG→BFS fares for S
 | Source | Result |
 |---|---|
 | virginaustralia | ok — 0 candidate items |
-| emirates | ok — 18 candidate items |
 | pointhacks | ok — 2 candidate items |
+| emirates | ok — 18 candidate items |
 | ozbargain-deals | ok — 48 candidate items |
 | ozbargain-competitions | ok — 200 candidate items |
 | aussiecomps.com | ok — 10 candidate items (listings per search {"flights":29,"trip":29,"holiday":14,"travel":29,"voucher":29,"kong":0,"ireland":0,"belfast":0,"london":0,"europe":1}; 77 keyword matches, 10 relevant) |

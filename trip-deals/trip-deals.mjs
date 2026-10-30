@@ -4,7 +4,7 @@
 //        [--sources a,b] [--delay 800] [--now ISO]
 // Exit codes: 0 = at least one source returned data, 1 = every source failed, 2 = bad arguments.
 // Never enters competitions. Respects robots.txt; a 403/CAPTCHA is recorded as "blocked" and not retried.
-import { writeFile } from 'node:fs/promises';
+import { readFile, writeFile } from 'node:fs/promises';
 import { pathToFileURL } from 'node:url';
 import {
   parseArgs, robotsAllows, detectBlock, normaliseItem, dedupe, applyFilters, sortItems, formatTable, TARGET_WINDOW,
@@ -170,18 +170,27 @@ export function competitionRows(data) {
     .sort((a, b) => order[a.priority] - order[b.priority] || (Date.parse(a.closesAt) || Infinity) - (Date.parse(b.closesAt) || Infinity));
 }
 
-export function renderCompetitions(data) {
+// `ledger` (entries.json) marks competitions already entered: ☑ date (who).
+export function renderCompetitions(data, ledger = null) {
   const rows = competitionRows(data);
+  const entered = new Map((ledger?.entries ?? []).map((e) => [e.id, e]));
+  const tick = (r) => {
+    const e = entered.get(r.id);
+    if (!e) return '☐';
+    const last = e.entries.at(-1);
+    return `☑ ${day(last?.at)}${last?.by ? ` (${md(last.by)})` : ''}`;
+  };
   const L = ['# Competitions: Belfast / Hong Kong / travel vouchers', ''];
   L.push(`Fetched ${data.generatedAt.slice(0, 10)} by \`node trip-deals.mjs\`. ${rows.length} open competitions that AU residents can enter. Nothing has been entered; every row links to the page it came from — read the T&Cs before entering.`, '');
+  L.push(`**Tracking:** after entering, run \`node track.mjs add <id> --by <name>\` (ids are in the second column), then \`npm start\` refreshes the ticks. \`node track.mjs due\` shows results to check and competitions closing soon. ${entered.size ? `${rows.filter((r) => entered.has(r.id)).length} of ${rows.length} entered.` : 'Nothing entered yet.'}`, '');
   L.push('**Columns:** *Travel $* = the travel/flight part of the prize parsed from the title; *Travel prizes* = how many of that prize are given away; *Kind* = random draw, skill (judged answer, usually better odds) or instant win; *Effort* = low (form/email), medium (social, referral, membership), high (written answer); *OzB entrants* = OzBargain members who have marked it entered (a rough popularity signal, not the real entry count).', '');
   for (const p of ['A', 'B', 'C', 'D']) {
     const group = rows.filter((r) => r.priority === p);
     L.push(`## ${p}. ${PRIORITY[p]} (${group.length})`, '');
     if (!group.length) { L.push('_None today._', ''); continue; }
-    L.push('| ✓ | Closes | Competition | Prize value | Travel $ | Travel prizes | Kind | Effort | Purchase? | Open to | OzB entrants | Links |', '|---|---|---|---|---|---|---|---|---|---|---|---|');
+    L.push('| Entered | Id · closes | Competition | Prize value | Travel $ | Travel prizes | Kind | Effort | Purchase? | Open to | OzB entrants | Links |', '|---|---|---|---|---|---|---|---|---|---|---|---|');
     for (const r of group) {
-      L.push(`| ☐ | ${day(r.closesAt)} | ${md(r.title)} | ${md(r.value ?? '?')} | ${r.travelValueAud ? `$${r.travelValueAud.toLocaleString('en-AU')}` : '-'} | ${r.winners} | ${r.entryKind ?? '?'} | ${r.effort} | ${yn(r.purchaseRequired)} | ${md(r.eligibility ?? '?')} | ${r.ozbEntrants ?? '-'} | [listing](${r.url})${r.termsUrl ? ` · [enter/T&Cs](${r.termsUrl})` : ''}${(r.alsoListedAt ?? []).map((u, i) => ` · [alt ${i + 1}](${u})`).join('')} |`);
+      L.push(`| ${tick(r)} | \`${r.id}\` ${day(r.closesAt)} | ${md(r.title)} | ${md(r.value ?? '?')} | ${r.travelValueAud ? `$${r.travelValueAud.toLocaleString('en-AU')}` : '-'} | ${r.winners} | ${r.entryKind ?? '?'} | ${r.effort} | ${yn(r.purchaseRequired)} | ${md(r.eligibility ?? '?')} | ${r.ozbEntrants ?? '-'} | [listing](${r.url})${r.termsUrl ? ` · [enter/T&Cs](${r.termsUrl})` : ''}${(r.alsoListedAt ?? []).map((u, i) => ` · [alt ${i + 1}](${u})`).join('')} |`);
     }
     L.push('');
   }
@@ -200,7 +209,9 @@ async function main() {
     const data = await run(opts);
     if (opts.out) await writeFile(opts.out === true ? 'results.json' : opts.out, JSON.stringify(data, null, 2));
     if (opts.report) await writeFile(opts.report === true ? 'RESULTS.md' : opts.report, renderReport(data));
-    if (opts.competitions) await writeFile(opts.competitions === true ? 'COMPETITIONS.md' : opts.competitions, renderCompetitions(data));
+    const ledgerPath = typeof opts.entries === 'string' ? opts.entries : 'entries.json';
+    const ledger = await readFile(ledgerPath, 'utf8').then(JSON.parse).catch((e) => { if (e.code === 'ENOENT') return null; throw e; });
+    if (opts.competitions) await writeFile(opts.competitions === true ? 'COMPETITIONS.md' : opts.competitions, renderCompetitions(data, ledger));
     if (opts.csv) await writeFile(opts.csv === true ? 'competitions.csv' : opts.csv, renderCsv(data));
     console.log(formatTable(data.results));
     console.log(`\n${data.results.length} open items, ${data.excluded.length} excluded (expired/ineligible/wrong travel window), ${data.irrelevantCount} irrelevant.`);

@@ -65,7 +65,24 @@ test('e2e: live run collects, filters, dedupes and sorts open items', { timeout:
     assert.ok(['low', 'medium', 'high'].includes(r.effort));
     assert.ok(r.winners >= 1);
     assert.ok(compMd.includes(r.url), `COMPETITIONS.md missing ${r.title}`);
+    assert.match(r.id, /^(ozb|cca|ac)-\d+$/, `unstable id ${r.id}`);
   }
+  assert.equal(new Set(compRows.map((r) => r.id)).size, compRows.length, 'competition ids must be unique');
+
+  // Tracker against the live results: record an entry, then see it in the ledger and the checklist.
+  const ledger = join(dir, 'entries.json');
+  const track = (args) => new Promise((resolve) => execFile('node', ['track.mjs', ...args, '--ledger', ledger, '--results', out],
+    (err, stdout, stderr) => resolve({ code: err ? (err.code ?? 1) : 0, stdout, stderr })));
+  const first = compRows[0];
+  const added = await track(['add', first.id, '--by', 'e2e']);
+  assert.equal(added.code, 0, added.stderr);
+  assert.equal((await track(['due'])).code, 0);
+  assert.equal((await track(['add', 'ozb-0'])).code, 2, 'unknown id is rejected');
+  const saved = JSON.parse(await readFile(ledger, 'utf8'));
+  assert.equal(saved.entries[0].id, first.id);
+  assert.equal(saved.entries[0].termsUrl, first.termsUrl);
+  const rerun = await runCli(['--sources', 'emirates', '--competitions', comps, '--entries', ledger]);
+  assert.equal(rerun.code, 0, rerun.stderr);
 });
 
 test('e2e: bad arguments exit with code 2', async () => {

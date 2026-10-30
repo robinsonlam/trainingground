@@ -60,12 +60,21 @@ Links are in [COMPETITIONS.md](COMPETITIONS.md). If you have time, also enter th
 - Emirates has open Skywards Miles offers *(fetched)*, including spending Miles on easyJet within Europe. That could cover a London→Belfast leg if easyJet flies that route; check.
 - Credit-card sign-up bonuses: today's feeds had **no current bonus-points offer** worth listing, so none is claimed here. Watch the Point Hacks feed in later runs.
 
-## 5. Next checkpoints
+## 5. Track every entry
+
+Promoters usually contact winners by email or phone, and the claim window can be short. Unclaimed prizes are often redrawn *(general)*, so a missed email can mean a lost prize.
+
+- Straight after entering, run `node track.mjs add <id> --by <name>`. Ids are in [COMPETITIONS.md](COMPETITIONS.md). For skill competitions, add `--answer "…"`. For purchase competitions, add `--ref <receipt or policy no.>` and keep the receipt: proof of purchase is normally needed to claim *(general)*.
+- Enter from **one dedicated email address** and record it with `--email`. Check that inbox **and its spam folder** at least weekly.
+- `npm run due` lists the entries whose results should now be known, wins still waiting to be claimed, and A/B competitions closing within 3 days that nobody has entered.
+- Record outcomes with `node track.mjs status <id> won --claim-by <date>`, or `not-won`. `ENTRIES.md` is the at-a-glance view.
+
+## 6. Next checkpoints
 
 | When | Do |
 |---|---|
-| Tonight (30 Oct) | Enter the three A-list competitions that close 31 Oct–1 Nov |
+| Tonight (30 Oct) | Enter the three A-list competitions that close 31 Oct–1 Nov, and record each with `node track.mjs add` |
 | By 9 Nov | Decide on the 1Cover insurance option |
 | By 1 Dec | Student fare decision; enter the remaining A/B competitions |
-| Weekly to Mar 2027 | `npm start` in `trip-deals/`; enter new A-list competitions; check fare alerts |
+| Weekly to Mar 2027 | `npm start` then `npm run due` in `trip-deals/`: enter new A-list competitions, check results that are due, check the competition inbox, check fare alerts |
 | When a sale is close to target | Book SYD→HKG→UK as one ticket and redeem points for anything not covered |
